@@ -19,10 +19,6 @@
       <default></default>
     </entry>
     <entry name="activationIndicator" type="Bool">
-      <label>Shows a blue bar underneath the launcher's icon when the launcher is opened.</label>
-      <default>true</default>
-    </entry>
-    <entry name="activationIndicator" type="Bool">
       <label>Shows an indicator underneath the launcher's icon when the launcher is opened.</label>
       <default>true</default>
     </entry>
@@ -37,6 +33,14 @@
     <entry name="defaultPage" type="Int">
       <label>Default Page</label>
       <default>0</default>
+    </entry>
+    <entry name="theming" type="Int">
+      <label>Theming</label>
+      <default>0</default>
+    </entry>
+    <entry name="customGreeting" type="String">
+      <label>Custom greeting Text</label>
+      <default></default>
     </entry>
     <entry name="isCentered" type="Bool">
       <label>Is the launcher horizontally centered?</label>
