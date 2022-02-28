@@ -27,6 +27,8 @@ PlasmaCore.Dialog { //cosmic background noise is less random than the placement 
 
   property int avatarWidth
 
+  flags: Qt.WindowStaysOnTopHint
+
   type: "Notification"
 
   x: root.x + root.width / 2 - width / 2

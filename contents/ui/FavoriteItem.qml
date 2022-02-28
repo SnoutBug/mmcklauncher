@@ -64,8 +64,8 @@ Item {
     width: appname.width + appicon.width + 3 * 10 + 5
     height: 45//40
     z: -20
-    color: "#202124"
-    border.color: "#141516"
+    color: plasmoid.configuration.theming == 0 ? "#202124" : plasmoid.configuration.theming == 1 ? "#E0E1E3" : PlasmaCore.Theme.buttonBackgroundColor
+    border.color: "transparent" //Qt.darker(color, 1.05) //plasmoid.configuration.theming == 0 ? "141516" : plasmoid.configuration.theming == 1 ? "#FAFAFA" : PlasmaCore.Theme.buttonAlternateBackgroundColor
     border.width: 1
     radius: 6
     PlasmaCore.IconItem {
@@ -80,18 +80,19 @@ Item {
         x: appicon.width + 10
         anchors.verticalCenter: appicon.verticalCenter
         text: ("name" in model ? model.name : model.display)
-        font.family: "SF Pro Text"
+        color: plasmoid.configuration.theming != 2 ? main.textColor : PlasmaCore.Theme.buttonTextColor
+        font.family: main.textFont
         font.pixelSize: 12
       }
     }
     states: [
     State {
       name: "highlight"; when: (highlighted)
-      PropertyChanges { target: rect; color: "#292A2E"}
+      PropertyChanges { target: rect; color: plasmoid.configuration.theming == 0 ? "#292A2E" : plasmoid.configuration.theming == 1 ? "#FFFFFF" : PlasmaCore.Theme.buttonHoverColor }
     },
     State {
       name: "default"; when: (!highlighted)
-      PropertyChanges { target: rect; color: "#202124"}
+      PropertyChanges { target: rect; color: plasmoid.configuration.theming == 0 ? "#202124" : plasmoid.configuration.theming == 1 ? "#F7F7F7" : PlasmaCore.Theme.buttonBackgroundColor }
     }]
     transitions: highlight
   }

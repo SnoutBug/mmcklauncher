@@ -48,7 +48,9 @@ Kirigami.FormLayout {
     property string cfg_defaultStateIcon: plasmoid.configuration.defaultStateIcon
     property bool cfg_isCentered: plasmoid.configuration.isCentered
     property alias cfg_defaultPage: defaultPage.currentIndex
+    property alias cfg_theming: theming.currentIndex
     property alias cfg_useExtraRunners: useExtraRunners.checked
+    property alias cfg_customGreeting: customGreeting.text
 
     Button {
         id: iconButton
@@ -191,6 +193,11 @@ Kirigami.FormLayout {
         cfg_enableGreeting = checked
       }
     }
+    TextField {
+      id: customGreeting
+      Kirigami.FormData.label: i18n("Custom Greeting Text:")
+      placeholderText: "No custom greeting set"
+    }
     Item {
         Kirigami.FormData.isSection: true
     }
@@ -227,12 +234,23 @@ Kirigami.FormLayout {
     Item {
         Kirigami.FormData.isSection: true
     }
-
     CheckBox {
         id: useExtraRunners
 
         Kirigami.FormData.label: i18n("Search:")
 
         text: i18n("Expand search to bookmarks, files and emails")
+    }
+    Item {
+        Kirigami.FormData.isSection: true
+    }
+    ComboBox {
+        id: theming
+        Kirigami.FormData.label: i18n("Theming:")
+        model: [
+        i18n("Dark (Default)"),
+        i18n("Light"),
+        i18n("Matching"),
+        ]
     }
 }

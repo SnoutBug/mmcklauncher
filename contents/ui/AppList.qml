@@ -28,6 +28,8 @@ import QtQuick.Layouts 1.15
 import QtQuick.Controls 2.15
 import org.kde.draganddrop 2.0
 
+import QtGraphicalEffects 1.0
+
 ScrollView {
   id: scrollView
 
@@ -79,6 +81,7 @@ ScrollView {
       height: 20
     }
     Image {
+      id: starImage
         source: "icons/feather/star.svg"
         width: 15
         height: width
@@ -86,8 +89,15 @@ ScrollView {
         x: parent.width + 10
         anchors.verticalCenter: parent.verticalCenter
         text: "Favorite Apps"
-        font.family: "SF Pro Text"
+        color: main.textColor
+        font.family: main.textFont
         font.pixelSize: 12
+      }
+      ColorOverlay {
+        visible: plasmoid.configuration.theming != 0
+        anchors.fill: starImage
+        source: starImage
+        color: main.textColor
       }
     }
     Item { //Spacer
@@ -195,7 +205,8 @@ ScrollView {
         x: parent.width + 10
         anchors.verticalCenter: parent.verticalCenter
         text: "All"
-        font.family: "SF Pro Text"
+        color: main.textColor
+        font.family: main.textFont
         font.pixelSize: 12
       }
       MouseArea {
@@ -223,6 +234,12 @@ ScrollView {
           }
           sortingImage.state = sortingImage.states[currentStateIndex].name
         }
+      }
+      ColorOverlay {
+        visible: plasmoid.configuration.theming != 0
+        anchors.fill: sortingImage
+        source: sortingImage
+        color: main.textColor
       }
     }
     Item { //Spacer

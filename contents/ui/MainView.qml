@@ -22,13 +22,17 @@ import QtGraphicalEffects 1.12
 import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.plasma.components 3.0 as PlasmaComponents
 import org.kde.kcoreaddons 1.0 as KCoreAddons
+import QtGraphicalEffects 1.0
 
 Item {
   id: main
   anchors.fill: parent
-
   property bool searching: (searchBar.text != "")
   signal  newTextQuery(string text)
+
+  readonly property color textColor: plasmoid.configuration.theming == 0 ? "#FFFFFF" : plasmoid.configuration.theming == 1 ? "#000000" : PlasmaCore.Theme.textColor
+  readonly property string textFont: plasmoid.configuration.theming == 2 ? PlasmaCore.Theme.defaultFont : "SF Pro Text"
+
 
   KCoreAddons.KUser {
       id: kuser
@@ -64,7 +68,7 @@ Item {
     y: 200 //175
     width: main.width
     height: main.height - y
-    color: '#131314'
+    color: plasmoid.configuration.theming == 0 ? "#131314" : plasmoid.configuration.theming == 1 ? "#ECEDEE" : PlasmaCore.Theme.backgroundColor
   }
   //Floating Avatar
   Item {
@@ -93,9 +97,9 @@ Item {
       id: nameLabel
       x: main.width / 2 - width / 2 //This centeres the Text
       y: 80//60
-      text: plasmoid.configuration.enableGreeting ? 'Hi, ' + kuser.fullName : i18n("%1@%2", kuser.loginName, kuser.host)
-
-      font.family: 'SF Pro Text' //This is the font that was used in the original design by Max McKinney
+      text: plasmoid.configuration.enableGreeting && plasmoid.configuration.customGreeting ? plasmoid.configuration.customGreeting : plasmoid.configuration.enableGreeting ? 'Hi, ' + kuser.fullName : i18n("%1@%2", kuser.loginName, kuser.host)
+      color: textColor
+      font.family: textFont //This is the font that was used in the original design by Max McKinney
       font.pixelSize: 16
     }
   }
@@ -107,7 +111,7 @@ Item {
       width: main.width - 2 * x
       height: 45//40
       radius: 6
-      color: '#202124'
+      color: plasmoid.configuration.theming == 0 ? "#202124" : plasmoid.configuration.theming == 1 ? "#FFFFFF" : PlasmaCore.Theme.viewBackgroundColor
       Image {
         id: searchIcon
         x: 15
@@ -115,6 +119,12 @@ Item {
         height: width
         anchors.verticalCenter: parent.verticalCenter
         source: 'icons/feather/search.svg'
+        ColorOverlay {
+          visible: plasmoid.configuration.theming != 0
+          anchors.fill: searchIcon
+          source: searchIcon
+          color: main.textColor
+        }
       }
       Rectangle {
         x: 45
@@ -133,15 +143,15 @@ Item {
           width: parent.width
           anchors.verticalCenter: parent.verticalCenter
           focus: true
-          color: 'white'
+          color: textColor
           selectByMouse: true
-          selectionColor: '#141414'
-          font.family: 'SF Pro Text'
+          selectionColor: plasmoid.configuration.theming == 0 ? "#141414" : plasmoid.configuration.theming == 1 ? "#EBEBEB" : PlasmaCore.Theme.highlightedTextColor
+          font.family: textFont
           font.pixelSize: 13
           Text {
             anchors.fill: parent
             text: 'Search your computer'
-            color: '#686B71'
+            color: plasmoid.configuration.theming == 0 ? "#686B71" : plasmoid.configuration.theming == 1 ? "#798591" : PlasmaCore.Theme.disabledTextColor
             visible: !parent.text
           }
           onTextChanged: {
@@ -258,8 +268,8 @@ Item {
     height: 40//20
     anchors.top: backdrop.top
     gradient: Gradient {
-      GradientStop { position: 0.0; color: "#0d0d0d" }
-      GradientStop { position: 1.0; color: "transparent" }
+      GradientStop { position: 0.0; color: Qt.darker(backdrop.color, 1.5) }
+      GradientStop { position: 1.0; color: "transparent" }//"#0d0d0d"
     }
     states: [
     State {
@@ -284,7 +294,7 @@ Item {
     anchors.bottom: backdrop.bottom
     gradient: Gradient {
       GradientStop { position: 0.0; color: "transparent" }
-      GradientStop { position: 1.0; color: "#0d0d0d"}
+      GradientStop { position: 1.0; color: Qt.darker(backdrop.color, 1.5)}
     }
     states: [
     State {

@@ -44,19 +44,18 @@ Item {
       y: 2 * iconSize
     }
     Image {
-        anchors.verticalCenter: parent.verticalCenter
-        anchors.horizontalCenter: parent.horizontalCenter
-        source: "icons/feather/settings.svg"
-        width: iconSize
-        height: width
-        /*
-        sourceSize: Qt.size( imgS.sourceSize.width, imgS.sourceSize.height)
-        Image {
-            id: imgS
-            source: parent.source
-            width: 0
-            height: 0
-        }*/
+      id: settingsImage
+      anchors.verticalCenter: parent.verticalCenter
+      anchors.horizontalCenter: parent.horizontalCenter
+      source: "icons/feather/settings.svg"
+      width: iconSize
+      height: width
+      ColorOverlay {
+        visible: plasmoid.configuration.theming != 0
+        anchors.fill: settingsImage
+        source: settingsImage
+        color: main.textColor
+      }
     }
     onClicked: {
       KQuickAddons.KCMShell.openSystemSettings("kcm_quick")
@@ -76,19 +75,18 @@ Item {
         text: "Power Off"
     }
     Image {
-        anchors.verticalCenter: parent.verticalCenter
-        anchors.horizontalCenter: parent.horizontalCenter
-        source: "icons/feather/power.svg"
-        width: iconSize
-        height: width
-        /*
-        sourceSize: Qt.size( imgP.sourceSize.width, imgP.sourceSize.height)
-        Image {
-            id: imgP
-            source: parent.source
-            width: 0
-            height: 0
-        }*/
+      id: powerImage
+      anchors.verticalCenter: parent.verticalCenter
+      anchors.horizontalCenter: parent.horizontalCenter
+      source: "icons/feather/power.svg"
+      width: iconSize
+      height: width
+      ColorOverlay {
+        visible: plasmoid.configuration.theming != 0
+        anchors.fill: powerImage
+        source: powerImage
+        color: main.textColor
+      }
     }
     onClicked: {
       pmEngine.performOperation("requestShutDown")

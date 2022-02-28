@@ -84,7 +84,7 @@ Item {
     width: main.width - 40 - allItem.x
     height: 38
     z: -20
-    color: "#131314"
+    color: backdrop.color
     border.color: "transparent"
     border.width: 1
     radius: 6
@@ -100,18 +100,19 @@ Item {
         x: appicon.width + 9
         anchors.verticalCenter: appicon.verticalCenter
         text: ("name" in model ? model.name : model.display)
-        font.family: "SF Pro Text"
+        color: main.textColor
+        font.family: main.textFont
         font.pixelSize: 12
       }
     }
     states: [
     State {
       name: "highlight"; when: !canNavigate ? highlighted : runnerList.currentMainIndex == index && runnerList.currentSubIndex == subIndex
-      PropertyChanges { target: rect; color: "#0E0E0F"}
+      PropertyChanges { target: rect; color: plasmoid.configuration.theming == 0 ? "#0E0E0F" : plasmoid.configuration.theming == 1 ? "#FFFFFF" : PlasmaCore.Theme.buttonFocusColor}
     },
     State {
       name: "default"; when: !canNavigate ? !highlighted : runnerList.currentMainIndex != index || runnerList.currentSubIndex != subIndex
-      PropertyChanges { target: rect; color: "#131314"}
+      PropertyChanges { target: rect; color: backdrop.color}
     }]
     transitions: highlight
   }

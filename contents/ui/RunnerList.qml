@@ -29,6 +29,8 @@ import org.kde.plasma.components 3.0 as PlasmaComponents
 import QtQuick.Layouts 1.15
 import QtQuick.Controls 2.15
 
+import QtGraphicalEffects 1.0
+
 PlasmaExtras.ScrollArea {
   id: runnerList
   property alias model: repeater.model
@@ -101,8 +103,15 @@ PlasmaExtras.ScrollArea {
               x: parent.width + 10
               anchors.verticalCenter: parent.verticalCenter
               text: repeater.model.modelForRow(index).description
-              font.family: "SF Pro Text"
+              color: main.textColor
+              font.family: main.textFont
               font.pixelSize: 12
+            }
+            ColorOverlay {
+              visible: plasmoid.configuration.theming != 0
+              anchors.fill: image
+              source: image
+              color: main.textColor
             }
           }
         }

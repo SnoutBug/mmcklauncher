@@ -31,7 +31,7 @@ PlasmaCore.Dialog {
 
     objectName: "popupWindow"
     flags: Qt.WindowStaysOnTopHint
-    location: PlasmaCore.Types.Floating
+    //location: PlasmaCore.Types.Floating
     hideOnWindowDeactivate: true
 
     onVisibleChanged: {
@@ -78,7 +78,7 @@ PlasmaCore.Dialog {
           x = (appletTopLeft.x < horizMidPoint) ? screen.x : (screen.x + screen.width) - width;
         }
 
-        y = screen.height - fs.height + root.margins.bottom;
+        y = screen.height - fs.height + root.margins.bottom + root.margins.top;
 
         return Qt.point(x, y);
     }
@@ -86,8 +86,10 @@ PlasmaCore.Dialog {
     FocusScope {
         id: fs
         focus: true
-        width: 515//450
-        height: 600//530
+        Layout.minimumWidth: 515//450
+        Layout.minimumHeight: 600//530
+        Layout.maximumWidth: Layout.minimumWidth
+        Layout.maximumHeight: Layout.minimumHeight
 
         Item {
           x: - root.margins.left
@@ -110,7 +112,6 @@ PlasmaCore.Dialog {
 
     function refreshModel() {
         main.reload()
-        console.log("[McKinney Launcher] Refreshed Model")
     }
 
     Component.onCompleted: {
