@@ -26,7 +26,6 @@ import org.kde.kcoreaddons 1.0 as KCoreAddons
 Item {
   id: main
   anchors.fill: parent
-
   property bool searching: (searchBar.text != "")
   signal  newTextQuery(string text)
 

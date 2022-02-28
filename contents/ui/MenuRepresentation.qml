@@ -78,7 +78,7 @@ PlasmaCore.Dialog {
           x = (appletTopLeft.x < horizMidPoint) ? screen.x : (screen.x + screen.width) - width;
         }
 
-        y = screen.height - fs.height + root.margins.bottom;
+        y = screen.height - fs.height - root.margins.bottom - plasmoid.configuration.yoffset
 
         return Qt.point(x, y);
     }

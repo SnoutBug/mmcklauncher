@@ -49,6 +49,7 @@ Kirigami.FormLayout {
     property bool cfg_isCentered: plasmoid.configuration.isCentered
     property alias cfg_defaultPage: defaultPage.currentIndex
     property alias cfg_useExtraRunners: useExtraRunners.checked
+    property alias cfg_yoffset: yoffset.value
 
     Button {
         id: iconButton
@@ -235,4 +236,14 @@ Kirigami.FormLayout {
 
         text: i18n("Expand search to bookmarks, files and emails")
     }
+  Item {
+        Kirigami.FormData.isSection: true
+    }
+   SpinBox{
+      id: yoffset	
+      Kirigami.FormData.label: i18n("Y-Offset:")
+	onValueChanged: {
+	    plasmoid.configuration.yoffset = yoffset.value
+	}
+    } 
 }
