@@ -1,7 +1,12 @@
 # mmcklauncher
 A Launcher for KDE Plasma based on a [design by Max McKinney](https://dribbble.com/shots/10499841-Windows-10-Redesign-UI-Design)
 
-![MMcK Launcher Screenshot](https://raw.githubusercontent.com/SnoutBug/mmcklauncher/main/images/mmck_launcher1.png)
+#### Dark Theme
+![MMcK Launcher Dark Theme](https://raw.githubusercontent.com/SnoutBug/mmcklauncher/main/images/mmck_launcher1.png)
+#### Light Theme
+![MMcK Launcher Light Theme](https://raw.githubusercontent.com/SnoutBug/mmcklauncher/main/images/mmck_launcher_light.png)
+#### Matching current Theme
+![MMcK Launcher Matching Theme](https://raw.githubusercontent.com/SnoutBug/mmcklauncher/main/images/mmck_launcher_matching.png)
 
 ## Installation
 
