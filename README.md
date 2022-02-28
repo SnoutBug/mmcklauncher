@@ -13,4 +13,4 @@ rm com.github.SnoutBug.mmckLauncher.tar.gz
 ```
 
 ## KDE Store
-https://store.kde.org/p/1720532/
+store.kde.org/p/1720532/
