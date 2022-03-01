@@ -34,13 +34,12 @@ PlasmaCore.Dialog { //cosmic background noise is less random than the placement 
   x: root.x + root.width / 2 - width / 2
   y: root.y - width / 2
 
-  mainItem:
-  Item{
-   onParentChanged: {
-     //This removes the dialog background
-      if (parent){
+  mainItem: Item {
+    onParentChanged: {
+      //This removes the dialog background
+      if (parent) {
         var popupWindow = Window.window
-        if (typeof popupWindow.backgroundHints !== "undefined"){
+        if (typeof popupWindow.backgroundHints !== "undefined") {
           popupWindow.backgroundHints = PlasmaCore.Types.NoBackground
         }
       }

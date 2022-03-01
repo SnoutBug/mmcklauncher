@@ -1,0 +1,26 @@
+{
+    "KPlugin": {
+        "Authors": [
+            {
+                "Email": "friedrich.schriewer@gmx.net",
+                "Name": "Friedrich Schriewer"
+            }
+        ],
+        "Category": "Application Launchers",
+        "Description": "A modern Launcher!",
+        "EnabledByDefault": true,
+        "Icon": "start-here-kde",
+        "Id": "com.github.SnoutBug.mmckLauncher",
+        "Name": "MMcK Launcher",
+        "ServiceTypes": [
+            "Plasma/Applet"
+        ],
+        "Version": "1",
+        "Website": "https://github.com/Metaberg/mmcklauncher"
+    },
+    "X-Plasma-API": "declarativeappletscript",
+    "X-Plasma-MainScript": "ui/main.qml",
+    "X-Plasma-Provides": [
+        "org.kde.plasma.launchermenu"
+    ]
+}

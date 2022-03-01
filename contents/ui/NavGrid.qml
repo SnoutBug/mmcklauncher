@@ -40,15 +40,17 @@ FocusScope {
   property int subIndex: 0
 
   onFocusChanged: {
-      if (!focus) {
-          currentIndex = -1;
-      }
+    if (!focus) {
+      currentIndex = -1;
+    }
   }
+
   function setFocus() {
     currentIndex = 0
     focus = true
     runnerList.currentMainIndex = currentIndex
   }
+
   function setFocusLast() {
     if (count > 0) {
       currentIndex = count - 1
@@ -130,7 +132,7 @@ FocusScope {
       Keys.onPressed: {
         if (event.key == Qt.Key_Enter || event.key == Qt.Key_Return) {
           event.accepted = true;
-          if (currentItem){
+          if (currentItem) {
             currentItem.trigger()
           }
         }

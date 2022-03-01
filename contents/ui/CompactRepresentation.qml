@@ -21,7 +21,6 @@
 
 import QtQuick 2.12
 import QtQuick.Layouts 1.12
-
 import org.kde.plasma.plasmoid 2.0
 import org.kde.plasma.core 2.0 as PlasmaCore
 
@@ -37,15 +36,8 @@ Item {
         width: plasmoid.configuration.activationIndicator ? parent.width * 0.65 : parent.width
         height: plasmoid.configuration.activationIndicator ? parent.height * 0.65 : parent.height
         anchors.centerIn: parent
-        //anchors.fill: parent
-
-        /*readonly property double aspectRatio: (vertical ? implicitHeight / implicitWidth
-            : implicitWidth / implicitHeight)*/
-
         source: useCustomButtonImage ? plasmoid.configuration.customButtonImage : plasmoid.configuration.icon
-
         active: mouseArea.containsMouse
-
         smooth: true
 
         Rectangle {

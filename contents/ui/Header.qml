@@ -25,7 +25,8 @@ import QtGraphicalEffects 1.0
 import org.kde.kquickcontrolsaddons 2.0 as KQuickAddons
 
 Item {
-  property var iconSize
+  property
+  var iconSize
   width: iconSize * 3.75
   height: iconSize
   PlasmaComponents.RoundButton {
@@ -37,7 +38,7 @@ Item {
     anchors.left: parent.left
 
     PlasmaComponents.ToolTip {
-        text: "Settings"
+      text: "Settings"
     }
     Item {
       id: visualParentSettings
@@ -72,7 +73,7 @@ Item {
     anchors.right: parent.right
 
     PlasmaComponents.ToolTip {
-        text: "Power Off"
+      text: "Power Off"
     }
     Image {
       id: powerImage

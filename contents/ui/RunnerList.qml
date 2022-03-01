@@ -59,12 +59,14 @@ PlasmaExtras.ScrollArea {
     }
   }
 
-  function get_position(){
+  function get_position() {
     return flickableItem.contentY / (flickableItem.contentHeight - height)
   }
-  function get_size(){
+
+  function get_size() {
     return (flickableItem.contentHeight <= height ? -1 : 0.99999)
   }
+
   function setFocus() {
     currentMainIndex = 0
     for (var i = 0; i < repeater.count; ++i) {
@@ -81,8 +83,7 @@ PlasmaExtras.ScrollArea {
     x: -10
     Repeater {
       id: repeater
-      delegate:
-      Item {
+      delegate: Item {
         id: section
         width: runnerList.width
         height: headerLabel.height + navGrid.height + (index == repeater.count - 1 ? 0 : 10)

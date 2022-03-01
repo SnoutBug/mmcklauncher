@@ -113,8 +113,8 @@ Kirigami.FormLayout {
         PlasmaCore.FrameSvgItem {
             id: previewFrame
             anchors.centerIn: parent
-            imagePath: plasmoid.location === PlasmaCore.Types.Vertical || plasmoid.location === PlasmaCore.Types.Horizontal
-                ? "widgets/panel-background" : "widgets/background"
+            imagePath: plasmoid.location === PlasmaCore.Types.Vertical || plasmoid.location === PlasmaCore.Types.Horizontal ?
+                "widgets/panel-background" : "widgets/background"
             width: units.iconSizes.large + fixedMargins.left + fixedMargins.right
             height: units.iconSizes.large + fixedMargins.top + fixedMargins.bottom
 
@@ -150,14 +150,14 @@ Kirigami.FormLayout {
         }
     }
     CheckBox {
-      id: activationIndicatorCheck
-      Kirigami.FormData.label: i18n("Indicator:")
-      text: i18n("Enabled")
-      checked: plasmoid.configuration.activationIndicator
-      onCheckedChanged: {
-        plasmoid.configuration.activationIndicator = checked
-        cfg_activationIndicator = checked
-      }
+        id: activationIndicatorCheck
+        Kirigami.FormData.label: i18n("Indicator:")
+        text: i18n("Enabled")
+        checked: plasmoid.configuration.activationIndicator
+        onCheckedChanged: {
+            plasmoid.configuration.activationIndicator = checked
+            cfg_activationIndicator = checked
+        }
     }
     Button {
         id: colorButton
@@ -166,49 +166,49 @@ Kirigami.FormLayout {
         Kirigami.FormData.label: i18n("Indicator Color:")
 
         Rectangle {
-          anchors.centerIn: parent
-          anchors.fill: parent
-          radius: 10
-          color: cfg_indicatorColor
+            anchors.centerIn: parent
+            anchors.fill: parent
+            radius: 10
+            color: cfg_indicatorColor
         }
         onPressed: colorDialog.visible ? colorDialog.close() : colorDialog.open()
         ColorDialog {
-        id: colorDialog
-        title: "Please choose a color"
-        onAccepted: {
-            cfg_indicatorColor = colorDialog.color
+            id: colorDialog
+            title: "Please choose a color"
+            onAccepted: {
+                cfg_indicatorColor = colorDialog.color
+            }
         }
-      }
     }
     Item {
         Kirigami.FormData.isSection: true
     }
     CheckBox {
-      id: enableGreetingCheck
-      Kirigami.FormData.label: i18n("Greeting:")
-      text: i18n("Enabled")
-      checked: plasmoid.configuration.enableGreeting
-      onCheckedChanged: {
-        plasmoid.configuration.enableGreeting = checked
-        cfg_enableGreeting = checked
-      }
+        id: enableGreetingCheck
+        Kirigami.FormData.label: i18n("Greeting:")
+        text: i18n("Enabled")
+        checked: plasmoid.configuration.enableGreeting
+        onCheckedChanged: {
+            plasmoid.configuration.enableGreeting = checked
+            cfg_enableGreeting = checked
+        }
     }
     TextField {
-      id: customGreeting
-      Kirigami.FormData.label: i18n("Custom Greeting Text:")
-      placeholderText: "No custom greeting set"
+        id: customGreeting
+        Kirigami.FormData.label: i18n("Custom Greeting Text:")
+        placeholderText: "No custom greeting set"
     }
     Item {
         Kirigami.FormData.isSection: true
     }
     CheckBox {
-      Kirigami.FormData.label: i18n("In Center:")
-      text: i18n("Enabled")
-      checked: plasmoid.configuration.isCentered
-      onCheckedChanged: {
-        plasmoid.configuration.isCentered = checked
-        cfg_isCentered = checked
-      }
+        Kirigami.FormData.label: i18n("In Center:")
+        text: i18n("Enabled")
+        checked: plasmoid.configuration.isCentered
+        onCheckedChanged: {
+            plasmoid.configuration.isCentered = checked
+            cfg_isCentered = checked
+        }
     }
     Item {
         Kirigami.FormData.isSection: true
@@ -217,18 +217,18 @@ Kirigami.FormLayout {
         id: defaultPage
         Kirigami.FormData.label: i18n("Default Page:")
         model: [
-        i18n("All Applications (Default)"),
-        i18n("Developement"),
-        i18n("Games"),
-        i18n("Graphics"),
-        i18n("Internet"),
-        i18n("Multimedia"),
-        i18n("Office"),
-        i18n("Science & Math"),
-        i18n("Settings"),
-        i18n("System"),
-        i18n("Utilities"),
-        i18n("Lost & Found"),
+            i18n("All Applications (Default)"),
+            i18n("Developement"),
+            i18n("Games"),
+            i18n("Graphics"),
+            i18n("Internet"),
+            i18n("Multimedia"),
+            i18n("Office"),
+            i18n("Science & Math"),
+            i18n("Settings"),
+            i18n("System"),
+            i18n("Utilities"),
+            i18n("Lost & Found"),
         ]
     }
     Item {
@@ -248,9 +248,9 @@ Kirigami.FormLayout {
         id: theming
         Kirigami.FormData.label: i18n("Theming:")
         model: [
-        i18n("Dark (Default)"),
-        i18n("Light"),
-        i18n("Matching"),
+            i18n("Dark (Default)"),
+            i18n("Light"),
+            i18n("Matching"),
         ]
     }
 }

@@ -52,12 +52,12 @@ Item {
 
     Component {
         id: compactRepresentation
-        CompactRepresentation { }
+        CompactRepresentation {}
     }
 
     Component {
         id: menuRepresentation
-        MenuRepresentation { }
+        MenuRepresentation {}
     }
 
     Kicker.RootModel {
