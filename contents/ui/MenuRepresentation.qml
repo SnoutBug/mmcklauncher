@@ -26,55 +26,16 @@ import org.kde.plasma.plasmoid 2.0
 import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.plasma.components 3.0 as PlasmaComponents
 
-PlasmaCore.Dialog {
+
+
+Item {
     id: root
-    type: "Normal"
-    objectName: "popupWindow"
-    flags: Qt.WindowStaysOnTopHint
-    hideOnWindowDeactivate: true
 
-    onVisibleChanged: {
-        if (!visible) {
-            reset();
-        } else {
-            // var pos = popupPosition(width, height);
-            var screenAvail = plasmoid.availableScreenRect;
-            var screenGeom = plasmoid.screenGeometry;
-            //QtBug - QTBUG-64115
-            var screen = Qt.rect(screenAvail.x + screenGeom.x,
-                screenAvail.y + screenGeom.y,
-                screenAvail.width,
-                screenAvail.height);
-
-            var offset = 0;
-
-            // Fall back to bottom-left of screen area when the applet is on the desktop or floating.
-            var x = offset;
-            var y = screen.height - height - offset;
-            var horizMidPoint = screen.x + (screen.width / 2);
-            var vertMidPoint = screen.y + (screen.height / 2);
-            var appletTopLeft = parent.mapToGlobal(0, 0);
-            var appletBottomLeft = parent.mapToGlobal(0, parent.height);
-
-            if (plasmoid.configuration.isCentered) {
-                x = horizMidPoint - width / 2;
-            } else {
-                x = (appletTopLeft.x < horizMidPoint) ? screen.x : (screen.x + screen.width) - width;
-            }
-
-            y = screen.height - fs.height + root.margins.bottom + root.margins.top;
-            requestActivate();
-        }
+    Component.onCompleted: {
+        rootModel.refreshed.connect(refreshModel)
+        reset();
     }
-
-    function toggle() {
-        root.visible = false;
-    }
-
-    function reset() {
-        main.reset()
-    }
-
+    
     FocusScope {
         id: fs
         focus: true
@@ -102,12 +63,4 @@ PlasmaCore.Dialog {
         }
     }
 
-    function refreshModel() {
-        main.reload()
-    }
-
-    Component.onCompleted: {
-        rootModel.refreshed.connect(refreshModel)
-        reset();
-    }
 }

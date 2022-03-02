@@ -36,28 +36,18 @@ Item {
 
     property bool isDash: false
 
-    Plasmoid.preferredRepresentation: Plasmoid.fullRepresentation
-
-    Plasmoid.compactRepresentation: null
-    Plasmoid.fullRepresentation: compactRepresentation
+    Plasmoid.preferredRepresentation: Plasmoid.compactRepresentation
 
     property Item dragSource: null
 
     property QtObject globalFavorites: rootModel.favoritesModel
     property QtObject systemFavorites: rootModel.systemFavoritesModel
 
+    Plasmoid.compactRepresentation: CompactRepresentation {}
+    Plasmoid.fullRepresentation: MenuRepresentation {}
+
     function action_menuedit() {
         processRunner.runMenuEditor();
-    }
-
-    Component {
-        id: compactRepresentation
-        CompactRepresentation {}
-    }
-
-    Component {
-        id: menuRepresentation
-        MenuRepresentation {}
     }
 
     Kicker.RootModel {

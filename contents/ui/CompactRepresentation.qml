@@ -25,73 +25,63 @@ import org.kde.plasma.plasmoid 2.0
 import org.kde.plasma.core 2.0 as PlasmaCore
 
 Item {
-    id: root
+  id: root
 
-    property QtObject dashWindow: null
-    readonly property bool useCustomButtonImage: (plasmoid.configuration.useCustomButtonImage && plasmoid.configuration.customButtonImage.length != 0)
+  property QtObject dashWindow: null
+  readonly property bool useCustomButtonImage: (plasmoid.configuration.useCustomButtonImage && plasmoid.configuration.customButtonImage.length != 0)
 
-    PlasmaCore.IconItem {
-        id: buttonIcon
+  PlasmaCore.IconItem {
+    id: buttonIcon
 
-        width: plasmoid.configuration.activationIndicator ? parent.width * 0.65 : parent.width
-        height: plasmoid.configuration.activationIndicator ? parent.height * 0.65 : parent.height
-        anchors.centerIn: parent
-        source: useCustomButtonImage ? plasmoid.configuration.customButtonImage : plasmoid.configuration.icon
-        active: mouseArea.containsMouse
-        smooth: true
+    width: plasmoid.configuration.activationIndicator ? parent.width * 0.65 : parent.width
+    height: plasmoid.configuration.activationIndicator ? parent.height * 0.65 : parent.height
+    anchors.centerIn: parent
+    source: useCustomButtonImage ? plasmoid.configuration.customButtonImage : plasmoid.configuration.icon
+    active: mouseArea.containsMouse
+    smooth: true
 
-        Rectangle {
-          id: indicator
-          width: 0
-          anchors.horizontalCenter: parent.horizontalCenter
-          height: 3
-          radius: 10
-          y: parent.height + height
-          color: plasmoid.configuration.indicatorColor
-          visible: plasmoid.configuration.activationIndicator
+    Rectangle {
+      id: indicator
+      width: 0
+      anchors.horizontalCenter: parent.horizontalCenter
+      height: 3
+      radius: 10
+      y: parent.height + height
+      color: plasmoid.configuration.indicatorColor
+      visible: plasmoid.configuration.activationIndicator
 
-          states: [
-            State { name: "inactive"
-            when: !dashWindow.visible
-            PropertyChanges {
-                target: indicator
-                width: 0
+      states: [
+        State {
+          name: "inactive"
+          when: !dashWindow.visible
+          PropertyChanges {
+            target: indicator
+            width: 0
 
-              }
-            },
-            State { name: "active"
-            when: dashWindow.visible
-            PropertyChanges {
-                target: indicator
-                width: parent.width * 0.65
-              }
-            }
-          ]
-          transitions: [
-            Transition {
-              NumberAnimation { properties: 'width'; duration: 60}
-            }
-          ]
+          }
+        },
+        State {
+          name: "active"
+          when: dashWindow.visible
+          PropertyChanges {
+            target: indicator
+            width: parent.width * 0.65
+          }
         }
-    }
-
-    MouseArea
-    {
-        id: mouseArea
-
-        anchors.fill: parent
-
-        hoverEnabled: true
-
-        onClicked: {
-            dashWindow.visible = !dashWindow.visible;
+      ]
+      transitions: [
+        Transition {
+          NumberAnimation {
+            properties: 'width';duration: 60
+          }
         }
+      ]
     }
-
-    Component.onCompleted: {
-        dashWindow = Qt.createQmlObject("MenuRepresentation {}", root);
-        plasmoid.activated.connect(function() {
-            dashWindow.visible = !dashWindow.visible;
-        });
+    MouseArea {
+      id: mouseArea
+      anchors.fill: parent
+      onClicked: plasmoid.expanded = !plasmoid.expanded
+      hoverEnabled: true
     }
+  }
 }
