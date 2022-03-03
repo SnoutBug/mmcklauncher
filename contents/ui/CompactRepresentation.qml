@@ -50,25 +50,6 @@ Item {
       color: plasmoid.configuration.indicatorColor
       visible: plasmoid.configuration.activationIndicator
 
-      states: [
-        State {
-          name: "inactive"
-          when: !dashWindow.visible
-          PropertyChanges {
-            target: indicator
-            width: 0
-
-          }
-        },
-        State {
-          name: "active"
-          when: dashWindow.visible
-          PropertyChanges {
-            target: indicator
-            width: parent.width * 0.65
-          }
-        }
-      ]
       transitions: [
         Transition {
           NumberAnimation {

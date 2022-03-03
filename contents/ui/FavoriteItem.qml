@@ -63,7 +63,7 @@ Item {
     x: 10
     y: 10
     width: appname.width + appicon.width + 3 * 10 + 5
-    height: 45 //40
+    height: 45 * PlasmaCore.Units.devicePixelRatio //40
     z: -20
     color: plasmoid.configuration.theming == 0 ? "#202124" : plasmoid.configuration.theming == 1 ? "#E0E1E3" : PlasmaCore.Theme.buttonBackgroundColor
     border.color: "transparent" //Qt.darker(color, 1.05) //plasmoid.configuration.theming == 0 ? "141516" : plasmoid.configuration.theming == 1 ? "#FAFAFA" : PlasmaCore.Theme.buttonAlternateBackgroundColor
@@ -73,17 +73,16 @@ Item {
       x: 10
       anchors.verticalCenter: rect.verticalCenter
       id: appicon
-      width: 25
+      width: 25 * PlasmaCore.Units.devicePixelRatio
       height: width
       source: model.decoration
       PlasmaComponents.Label {
         id: appname
-        x: appicon.width + 10
+        x: appicon.width + 10 * PlasmaCore.Units.devicePixelRatio
         anchors.verticalCenter: appicon.verticalCenter
         text: ("name" in model ? model.name : model.display)
         color: plasmoid.configuration.theming != 2 ? main.textColor : PlasmaCore.Theme.buttonTextColor
         font.family: main.textFont
-        font.pixelSize: 12
       }
     }
     states: [

@@ -38,13 +38,14 @@ Item {
 
     Plasmoid.preferredRepresentation: Plasmoid.compactRepresentation
 
+    Plasmoid.compactRepresentation: CompactRepresentation {}
+    Plasmoid.fullRepresentation: MenuRepresentation {}
+
     property Item dragSource: null
 
     property QtObject globalFavorites: rootModel.favoritesModel
     property QtObject systemFavorites: rootModel.systemFavoritesModel
 
-    Plasmoid.compactRepresentation: CompactRepresentation {}
-    Plasmoid.fullRepresentation: MenuRepresentation {}
 
     function action_menuedit() {
         processRunner.runMenuEditor();

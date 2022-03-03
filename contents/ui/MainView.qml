@@ -18,18 +18,22 @@
  ****************************************************************************/
 import QtQuick 2.15
 import QtQuick.Layouts 1.12
+import QtQuick.Window 2.2
 import QtGraphicalEffects 1.12
 import org.kde.plasma.extras 2.0 as PlasmaExtras
 import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.plasma.components 3.0 as PlasmaComponents
 import org.kde.kcoreaddons 1.0 as KCoreAddons
+import org.kde.kirigami 2.13 as Kirigami
+import org.kde.kquickcontrolsaddons 2.0 as KQuickAddons
+import org.kde.plasma.plasmoid 2.0
 
 Item {
   id: main
   anchors.fill: parent
+  
   property bool searching: (searchBar.text != "")
   signal newTextQuery(string text)
-
   readonly property color textColor: plasmoid.configuration.theming == 0 ? "#FFFFFF" : plasmoid.configuration.theming == 1 ? "#000000" : PlasmaCore.Theme.textColor
   readonly property string textFont: plasmoid.configuration.theming == 2 ? PlasmaCore.Theme.defaultFont : "SF Pro Text"
 
@@ -61,30 +65,58 @@ Item {
     appList.reset()
   }
 
+  // Background for Avatar
+  Rectangle {
+    id: avatarBg
+    x: 0
+    y: 0
+    width: main.width
+    height: width / 10
+    color: "#00FFFFFF"
+  }
+
   Rectangle {
     id: backdrop
     x: 0
-    y: main.height * 0.35
+    y: main.height * 0.28 + avatarBg.height
     width: main.width
     height: main.height - y
-    color: plasmoid.configuration.theming == 0 ? "#131314" : plasmoid.configuration.theming == 1 ? "#ECEDEE" : PlasmaCore.Theme.backgroundColor
+    color:  plasmoid.configuration.theming == 0 ? "#131314" : plasmoid.configuration.theming == 1 ? "#ECEDEE" : PlasmaCore.Theme.backgroundColor
   }
   //Floating Avatar
   Item {
     id: avatarParent
+    anchors.bottom: avatarBg.bottom
     x: main.width / 2
-    y: -root.margins.top
-    FloatingAvatar { //i hate this. Why?
-      id: floatingAvatar
-      avatarWidth: main.width / 4
-      visible: root.visible
+    // y: main.height * 0.35 
+    Item {
+      id: avatarFrame
+      anchors.centerIn: parent
+      width: main.width / 5
+      height: width
+      Kirigami.Avatar {
+        source: kuser.faceIconUrl
+        anchors {
+          fill: parent
+          margins: PlasmaCore.Units.smallSpacing
+        }
+        MouseArea {
+          anchors.fill: parent
+          cursorShape: Qt.PointingHandCursor
+          hoverEnabled: false
+          onClicked: {
+            KQuickAddons.KCMShell.openSystemSettings("kcm_users")
+            root.toggle()
+          }
+        }
+      }
     }
   }
   //Power & Settings
   Item {
     Header {
       x: (main.width - width - iconSize)
-      y: iconSize / 2
+      y: backdrop.y * 0.25
       iconSize: PlasmaCore.Units.iconSizes.small
     }
   }
@@ -94,9 +126,9 @@ Item {
     PlasmaExtras.Heading {
       id: nameLabel
       x: (main.width - width) / 2 //This centeres the Text
-      y: backdrop.y * 0.4
+      y: backdrop.y * 0.5
       level: 2
-      text: plasmoid.configuration.enableGreeting && plasmoid.configuration.customGreeting ? plasmoid.configuration.customGreeting : plasmoid.configuration.enableGreeting ? 'Hi2, ' + kuser.fullName : i18n("%1@%2", kuser.loginName, kuser.host)
+      text: plasmoid.configuration.enableGreeting && plasmoid.configuration.customGreeting ? plasmoid.configuration.customGreeting : plasmoid.configuration.enableGreeting ? 'Hi, ' + kuser.fullName : i18n("%1@%2", kuser.loginName, kuser.host)
       color: textColor
       font.family: textFont //This is the font that was used in the original design by Max McKinney
     }
@@ -106,7 +138,7 @@ Item {
     Rectangle {
       id: seachBarBackground
       x: (main.width - width) / 2
-      y: backdrop.y * 0.6
+      y: backdrop.y * 0.7
       width: main.width - PlasmaCore.Units.smallSpacing * 6
       height: PlasmaCore.Units.iconSizes.medium
       radius: main.width * 0.1
@@ -200,7 +232,7 @@ Item {
     id: appList
     state: "visible"
     anchors.top: backdrop.top
-    width: main.width - 30
+    width: main.width
     height: main.height - y
     visible: opacity > 0
     states: [
@@ -250,7 +282,7 @@ Item {
     state: "hidden"
     visible: opacity > 0 //searching
     anchors.top: backdrop.top
-    width: main.width - 30
+    width: main.width
     height: backdrop.height
     states: [
       State {

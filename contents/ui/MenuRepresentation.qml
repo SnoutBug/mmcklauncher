@@ -30,37 +30,35 @@ import org.kde.plasma.components 3.0 as PlasmaComponents
 
 Item {
     id: root
+    //Plasmoid.backgroundHints: "NoBackground" 
+    Layout.minimumWidth: 515 * PlasmaCore.Units.devicePixelRatio//450
+    Layout.minimumHeight: 650 * PlasmaCore.Units.devicePixelRatio//600//530
+    Layout.maximumWidth: Layout.minimumWidth
+    Layout.maximumHeight: Layout.minimumHeight
+
+    function toggle() {
+        plasmoid.expanded = !plasmoid.expanded;
+    }
+
+    function reset() {
+        main.reset()
+    }
+
+    function refreshModel() {
+        main.reload()
+    }
 
     Component.onCompleted: {
         rootModel.refreshed.connect(refreshModel)
+        kicker.reset.connect(reset);
         reset();
     }
-    
-    FocusScope {
-        id: fs
-        focus: true
-        Layout.minimumWidth: 515 //450
-        Layout.minimumHeight: 600 //530
-        Layout.maximumWidth: Layout.minimumWidth
-        Layout.maximumHeight: Layout.minimumHeight
 
-        Item {
-            x: 0 //- root.margins.left
-            y: 0 //- root.margins.top
-            width: parent.width + root.margins.left + root.margins.right
-            height: parent.height + root.margins.top + root.margins.bottom
-
-            MainView {
-                id: main
-            }
-        }
-
-
-        Keys.onPressed: {
-            if (event.key == Qt.Key_Escape) {
-                root.visible = false;
-            }
-        }
+    MainView {
+        id: main
     }
+
+
+
 
 }

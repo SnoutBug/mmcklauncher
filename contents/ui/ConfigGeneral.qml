@@ -193,23 +193,13 @@ Kirigami.FormLayout {
             cfg_enableGreeting = checked
         }
     }
+
     TextField {
         id: customGreeting
         Kirigami.FormData.label: i18n("Custom Greeting Text:")
         placeholderText: "No custom greeting set"
     }
-    Item {
-        Kirigami.FormData.isSection: true
-    }
-    CheckBox {
-        Kirigami.FormData.label: i18n("In Center:")
-        text: i18n("Enabled")
-        checked: plasmoid.configuration.isCentered
-        onCheckedChanged: {
-            plasmoid.configuration.isCentered = checked
-            cfg_isCentered = checked
-        }
-    }
+
     Item {
         Kirigami.FormData.isSection: true
     }

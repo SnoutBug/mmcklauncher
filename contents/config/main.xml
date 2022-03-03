@@ -42,10 +42,6 @@
       <label>Custom greeting Text</label>
       <default></default>
     </entry>
-    <entry name="isCentered" type="Bool">
-      <label>Is the launcher horizontally centered?</label>
-      <default>false</default>
-    </entry>
     <entry name="useExtraRunners" type="Bool">
       <label>Whether to use additional KRunner plugins to produce results in the search.</label>
       <default>true</default>
