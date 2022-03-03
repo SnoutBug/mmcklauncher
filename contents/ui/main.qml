@@ -169,7 +169,6 @@ Item {
         appletInterface: plasmoid
 
         deleteWhenEmpty: false
-
     }
 
     Kicker.DragHelper {

@@ -27,12 +27,18 @@ import org.kde.plasma.components 3.0 as PlasmaComponents
 PlasmaCore.Dialog {
     id: root
 
-    type: "Normal"
-
     objectName: "popupWindow"
     flags: Qt.WindowStaysOnTopHint
-    //location: PlasmaCore.Types.Floating
+    location: PlasmaCore.Types.Floating
     hideOnWindowDeactivate: true
+
+    property int iconSize: units.iconSizes.medium
+    property int iconSizeSide: units.iconSizes.smallMedium
+
+    property int cellSize: iconSize + theme.mSize(theme.defaultFont).height
+        + units.largeSpacing
+        + (2 * Math.max(highlightItemSvg.margins.top + highlightItemSvg.margins.bottom,
+            highlightItemSvg.margins.left + highlightItemSvg.margins.right))
 
     onVisibleChanged: {
         if (!visible) {
@@ -45,12 +51,24 @@ PlasmaCore.Dialog {
         }
     }
 
+    onHeightChanged: {
+        var pos = popupPosition(width, height);
+        x = pos.x;
+        y = pos.y;
+    }
+
+    onWidthChanged: {
+        var pos = popupPosition(width, height);
+        x = pos.x;
+        y = pos.y;
+    }
+
     function toggle() {
         root.visible = false;
     }
 
     function reset() {
-        main.reset()
+        mainColumnItem.reset()
     }
 
     function popupPosition(width, height) {
@@ -62,7 +80,7 @@ PlasmaCore.Dialog {
             screenAvail.width,
             screenAvail.height);
 
-        var offset = 0;
+        var offset = units.smallSpacing;
 
         // Fall back to bottom-left of screen area when the applet is on the desktop or floating.
         var x = offset;
@@ -71,35 +89,54 @@ PlasmaCore.Dialog {
         var vertMidPoint = screen.y + (screen.height / 2);
         var appletTopLeft = parent.mapToGlobal(0, 0);
         var appletBottomLeft = parent.mapToGlobal(0, parent.height);
-
-        if (plasmoid.configuration.isCentered){
-          x = horizMidPoint - width / 2;
-        } else {
-          x = (appletTopLeft.x < horizMidPoint) ? screen.x : (screen.x + screen.width) - width;
+        if (plasmoid.configuration.menuPosition == 0) {
+            x = plasmoid.location === PlasmaCore.Types.LeftEdge ? parent.width + panelSvg.margins.right + offset + 6 : plasmoid.location === PlasmaCore.Types.RightEdge ? appletTopLeft.x - panelSvg.margins.left - offset - width - 6 : horizMidPoint - width / 2;
+            y = plasmoid.location === PlasmaCore.Types.TopEdge ? parent.height + panelSvg.margins.bottom + offset + 6 : plasmoid.location === PlasmaCore.Types.BottomEdge ? screen.height - height - offset - panelSvg.margins.top - 6 : vertMidPoint - height / 2;
+        } else if (plasmoid.location === PlasmaCore.Types.BottomEdge) {
+            if (plasmoid.configuration.menuPosition == 1)
+                x = (appletTopLeft.x < horizMidPoint) ? screen.x + offset + 6 : (screen.x + screen.width) - width - offset - 6;
+            else
+                x = appletTopLeft.x - width / 2
+            y = screen.height - height - offset - panelSvg.margins.top - 6;
+        } else if (plasmoid.location === PlasmaCore.Types.TopEdge) {
+            if (plasmoid.configuration.menuPosition == 1)
+                x = (appletBottomLeft.x < horizMidPoint) ? screen.x + offset + 6 : (screen.x + screen.width) - width - offset - 6;
+            else
+                x = appletBottomLeft.x - width / 2
+            y = parent.height + panelSvg.margins.bottom + offset + 6;
+        } else if (plasmoid.location === PlasmaCore.Types.LeftEdge) {
+            x = parent.width + panelSvg.margins.right + offset + 6;
+            if (plasmoid.configuration.menuPosition == 1)
+                y = (appletTopLeft.y < vertMidPoint) ? screen.y + offset + 6 : (screen.y + screen.height) - height - offset - 6;
+            else
+                y = appletTopLeft.y - height / 2
+        } else if (plasmoid.location === PlasmaCore.Types.RightEdge) {
+            x = appletTopLeft.x - panelSvg.margins.left - offset - width - 6;
+            if (plasmoid.configuration.menuPosition == 1)
+                y = (appletTopLeft.y < vertMidPoint) ? screen.y + offset + 6 : (screen.y + screen.height) - height - offset - 6;
+            else
+                y = appletTopLeft.y - height / 2
         }
-
-        y = screen.height - fs.height + root.margins.bottom + root.margins.top;
 
         return Qt.point(x, y);
     }
 
+
     FocusScope {
-        id: fs
-        focus: true
-        Layout.minimumWidth: 515//450
-        Layout.minimumHeight: 600//530
+        Layout.minimumWidth: mainColumnItem.width
+        Layout.minimumHeight: cellSize * (5.1 + plasmoid.configuration.numberRows + (plasmoid.configuration.alwaysShowSearchBar ? 0.6 : 0))
         Layout.maximumWidth: Layout.minimumWidth
         Layout.maximumHeight: Layout.minimumHeight
 
-        Item {
-          x: - root.margins.left
-          y: - root.margins.top
-          width: parent.width + root.margins.left + root.margins.right
-          height: parent.height + root.margins.top + root.margins.bottom
+        focus: true
 
-          MainView {
-            id: main
-          }
+        Row{
+            anchors.fill: parent
+            spacing: units.largeSpacing
+
+            MainColumnItem{
+                id: mainColumnItem
+            }
         }
 
 
@@ -111,7 +148,8 @@ PlasmaCore.Dialog {
     }
 
     function refreshModel() {
-        main.reload()
+        mainColumnItem.reload()
+        console.log("refresh model - menu 11")
     }
 
     Component.onCompleted: {
