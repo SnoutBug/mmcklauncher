@@ -33,6 +33,7 @@ import QtGraphicalEffects 1.0
 
 PlasmaExtras.ScrollArea {
   id: runnerList
+  focus: true
   property alias model: repeater.model
   property alias count: repeater.count
 
@@ -74,6 +75,9 @@ PlasmaExtras.ScrollArea {
         break
       }
     }
+  }
+  function triggerFirst(){
+    repeater.itemAt(currentSubIndex).nGrid.currentItem.trigger()
   }
 
   Column {

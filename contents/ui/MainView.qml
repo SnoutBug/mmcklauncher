@@ -188,6 +188,9 @@ Item {
               } else {
                 root.toggle()
               }
+            } else if (event.key == Qt.Key_Enter || event.key == Qt.Key_Return) {
+              runnerList.setFocus()
+              runnerList.triggerFirst()
             }
           }
         }
