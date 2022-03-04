@@ -31,8 +31,8 @@ import "../code/tools.js" as Tools
 
 Item {
   id: allItem
-  width: rect.width + 4
-  height: rect.height + 4
+  width: rect.width + PlasmaCore.Units.smallSpacing
+  height: rect.height + PlasmaCore.Units.smallSpacing
 
   property bool highlighted: false
   property bool isDraging: false
@@ -81,23 +81,23 @@ Item {
     id: rect
     x: 10
     y: 10
-    width: main.width - 40 - allItem.x
-    height: 38
+    width: (main.width - allItem.x)*0.9
+    height: main.width * 0.1
     z: -20
     color: backdrop.color
     border.color: "transparent"
     border.width: 1
-    radius: 6
+    radius: height*0.1
     PlasmaCore.IconItem {
       x: 9
       anchors.verticalCenter: rect.verticalCenter
       id: appicon
-      width: 24
+      width: PlasmaCore.Units.iconSizes.smallMedium
       height: width
       source: model.decoration
       PlasmaComponents.Label {
         id: appname
-        x: appicon.width + 9
+        x: appicon.width + PlasmaCore.Units.smallSpacing*2
         anchors.verticalCenter: appicon.verticalCenter
         text: ("name" in model ? model.name : model.display)
         color: main.textColor

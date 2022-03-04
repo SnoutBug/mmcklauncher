@@ -325,7 +325,7 @@ ScrollView {
       id: allAppsGrid
       x: -10
       columns: 1
-      width: scrollView.width -10*PlasmaCore.Units.devicePixelRatio
+      width: scrollView.width*0.95
       visible: opacity > 0
       Repeater {
         id: allAppsRepeater
