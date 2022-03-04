@@ -146,9 +146,9 @@ Item {
       id: seachBarBackground
       x: (main.width - width) / 2
       y: backdrop.y * 0.7
-      width: main.width - PlasmaCore.Units.smallSpacing * 6
-      height: PlasmaCore.Units.iconSizes.medium
-      radius: main.width * 0.1
+      width: main.width - PlasmaCore.Units.smallSpacing * 10
+      height: PlasmaCore.Units.iconSizes.medium * 1.5
+      radius: width * 0.01
       color: plasmoid.configuration.theming == 0 ? "#202124" : plasmoid.configuration.theming == 1 ? "#FFFFFF" : PlasmaCore.Theme.viewBackgroundColor
       Image {
         id: searchIcon
