@@ -99,7 +99,6 @@ PlasmaExtras.ScrollArea {
             source: repeater.model.modelForRow(index).description === 'Command Line' ? "icons/feather/code.svg" : repeater.model.modelForRow(index).description == 'Desktop Search' ? "icons/feather/search.svg" : "icons/feather/file-text.svg"
             width: 15
             height: width
-            //visible: repeater.model.modelForRow(index).count > 0
             PlasmaComponents.Label {
               x: parent.width + 10
               anchors.verticalCenter: parent.verticalCenter

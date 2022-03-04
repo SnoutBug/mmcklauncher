@@ -17,12 +17,12 @@
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA .          *
  ****************************************************************************/
 import QtQuick 2.12
+import QtQuick.Controls 2.15
 
 import org.kde.plasma.core 2.0 as PlasmaCore
-import org.kde.plasma.components 2.0 as PlasmaComponents
+import org.kde.plasma.components 3.0 as PlasmaComponents
 import org.kde.plasma.extras 2.0 as PlasmaExtras
 import org.kde.kquickcontrolsaddons 2.0
-
 import org.kde.draganddrop 2.0
 
 FocusScope {
@@ -72,11 +72,14 @@ FocusScope {
     }
   }
 
-  PlasmaExtras.ScrollArea {
-    id: scrollArea
+  PlasmaComponents.ScrollView {
+    id: scrollView
 
     anchors.fill: parent
     focus: true
+
+    ScrollBar.horizontal.policy: ScrollBar.AlwaysOff
+    ScrollBar.vertical.policy: ScrollBar.AlwaysOff
 
     ListView {
       id: listView

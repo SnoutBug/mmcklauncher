@@ -31,12 +31,19 @@ import org.kde.plasma.plasmoid 2.0
 Item {
   id: main
   anchors.fill: parent
-  
+
   property bool searching: (searchBar.text != "")
   signal newTextQuery(string text)
   readonly property color textColor: plasmoid.configuration.theming == 0 ? "#FFFFFF" : plasmoid.configuration.theming == 1 ? "#000000" : PlasmaCore.Theme.textColor
   readonly property string textFont: plasmoid.configuration.theming == 2 ? PlasmaCore.Theme.defaultFont : "SF Pro Text"
 
+  // Component.onCompleted: {
+  //   if (PlasmaCore.Theme.defaultFontChanged) {
+  //     console.log(PlasmaCore.Theme.defaultFont);
+  //   } else {
+  //     console.log(PlasmaCore.Theme.defaultFont);
+  //   }
+  // }
 
   KCoreAddons.KUser {
     id: kuser
@@ -81,7 +88,7 @@ Item {
     y: main.height * 0.28 + avatarBg.height
     width: main.width
     height: main.height - y
-    color:  plasmoid.configuration.theming == 0 ? "#131314" : plasmoid.configuration.theming == 1 ? "#ECEDEE" : PlasmaCore.Theme.backgroundColor
+    color: plasmoid.configuration.theming == 0 ? "#131314" : plasmoid.configuration.theming == 1 ? "#ECEDEE" : PlasmaCore.Theme.backgroundColor
   }
   //Floating Avatar
   Item {

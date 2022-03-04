@@ -21,10 +21,8 @@
 import QtQuick 2.12
 import QtQuick.Layouts 1.12
 import org.kde.plasma.plasmoid 2.0
-
 import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.plasma.components 3.0 as PlasmaComponents
-
 import org.kde.plasma.private.kicker 0.1 as Kicker
 
 Item {
@@ -56,7 +54,6 @@ Item {
 
         autoPopulate: false
 
-        appNameFormat: plasmoid.configuration.appNameFormat
         flat: true
         sorted: true
         showSeparators: false
@@ -65,10 +62,6 @@ Item {
         showAllApps: true
         showAllAppsCategorized: true
         showTopLevelItems: !isDash
-        showRecentApps: plasmoid.configuration.showRecentApps
-        showRecentDocs: plasmoid.configuration.showRecentDocs
-        showRecentContacts: plasmoid.configuration.showRecentContacts
-        recentOrdering: plasmoid.configuration.recentOrdering
 
         onShowRecentAppsChanged: {
             plasmoid.configuration.showRecentApps = showRecentApps;
