@@ -16,7 +16,7 @@
             "Plasma/Applet"
         ],
         "Version": "1",
-        "Website": "https://github.com/Metaberg/mmcklauncher"
+        "Website": "https://github.com/SnoutBug/mmcklauncher"
     },
     "X-Plasma-API": "declarativeappletscript",
     "X-Plasma-MainScript": "ui/main.qml",
