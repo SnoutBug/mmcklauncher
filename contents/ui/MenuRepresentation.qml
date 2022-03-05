@@ -75,7 +75,7 @@ PlasmaCore.Dialog {
             screenAvail.width,
             screenAvail.height);*/
 
-        var offset = plasmoid.configuration.floating ? parent.height : 0;
+        var offset = plasmoid.configuration.floating ? parent.height * 0.75 : 0;
         // Fall back to bottom-left of screen area when the applet is on the desktop or floating.
         var x = offset;
         var y = screen.height - height - offset;
@@ -89,9 +89,9 @@ PlasmaCore.Dialog {
         } else {
           x = (appletTopLeft.x < horizMidPoint) ? screen.x : (screen.x + screen.width) - width;
           if (plasmoid.configuration.floating) {
-            if (appletTopLeft.x < horizMidPoint & plasmoid.location != PlasmaCore.Types.TopEdge) {
+          if (appletTopLeft.x < horizMidPoint) {
               x += offset
-            } else if (appletTopLeft.x + width > horizMidPoint & plasmoid.location != PlasmaCore.Types.TopEdge){
+            } else if (appletTopLeft.x + width > horizMidPoint){
               x -= offset
             }
           }
@@ -101,7 +101,7 @@ PlasmaCore.Dialog {
           if (plasmoid.location == PlasmaCore.Types.TopEdge) {
             if (plasmoid.configuration.floating) {
                           /*this is floatingAvatar.width*/
-              offset = (125 * PlasmaCore.Units.devicePixelRatio) / 2  - parent.height
+              offset = (125 * PlasmaCore.Units.devicePixelRatio) / 2 + parent.height * 0.125
             }
             y = parent.height + panelSvg.margins.bottom + offset;
           } else {

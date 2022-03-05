@@ -212,6 +212,7 @@ Kirigami.FormLayout {
         onCurrentIndexChanged: {
           if (currentIndex == 2) {
             floating.enabled = false
+            floating.checked = true
           } else {
             floating.enabled = true
           }

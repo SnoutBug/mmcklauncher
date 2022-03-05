@@ -66,10 +66,10 @@ Item {
     width: main.width
     height: isTop ? main.height - 200 * PlasmaCore.Units.devicePixelRatio : main.height - y
     color: plasmoid.configuration.theming == 0 ? "#131314" : plasmoid.configuration.theming == 1 ? "#ECEDEE" : PlasmaCore.Theme.backgroundColor
-    radius: plasmoid.configuration.floating ? 10 : 0
+    radius: 10
     Rectangle {
       id: topCorner
-      visible: plasmoid.configuration.floating & !isTop
+      visible: true
       anchors.top: backdrop.top
       color: backdrop.color
       width: backdrop.width
@@ -77,7 +77,7 @@ Item {
     }
     Rectangle {
       id: bottomCorner
-      visible: plasmoid.configuration.floating & isTop
+      visible: !plasmoid.configuration.floating
       anchors.bottom: backdrop.bottom
       color: backdrop.color
       width: backdrop.width
@@ -94,7 +94,7 @@ Item {
       visualParent: root
       isTop: main.isTop
       avatarWidth: 125 * PlasmaCore.Units.devicePixelRatio
-      visible: root.visible
+      visible: root.visible && !isTop ? true : root.visible && plasmoid.configuration.floating ? true : false
     }
   }
   //Power & Settings
@@ -111,7 +111,7 @@ Item {
     PlasmaComponents.Label {
       id: nameLabel
       x: main.width / 2 - width / 2 //This centeres the Text
-      y: isTop ? main.height - height - 80 * PlasmaCore.Units.devicePixelRatio : 80 * PlasmaCore.Units.devicePixelRatio
+      y: isTop ? main.height - height - 125 * PlasmaCore.Units.devicePixelRatio : 80 * PlasmaCore.Units.devicePixelRatio
       text: plasmoid.configuration.enableGreeting && plasmoid.configuration.customGreeting ? plasmoid.configuration.customGreeting : plasmoid.configuration.enableGreeting ? 'Hi, ' + kuser.fullName : i18n("%1@%2", kuser.loginName, kuser.host)
       color: textColor
       font.family: textFont
@@ -122,7 +122,7 @@ Item {
   Item {
     Rectangle {
       x: 25 * PlasmaCore.Units.devicePixelRatio
-      y: isTop ? main.height - height - 125 * PlasmaCore.Units.devicePixelRatio : 125 * PlasmaCore.Units.devicePixelRatio
+      y: isTop ? main.height - height - 55 : 125 * PlasmaCore.Units.devicePixelRatio
       width: main.width - 2 * x
       height: 45 * PlasmaCore.Units.devicePixelRatio
       radius: 6
@@ -311,7 +311,7 @@ Item {
     width: main.width
     height: 40 * PlasmaCore.Units.devicePixelRatio
     anchors.bottom: backdrop.bottom
-    radius: !isTop ? backdrop.radius : 0
+    radius: !bottomCorner.visible ? backdrop.radius : 0
     gradient: Gradient {
       GradientStop { position: 0.0; color: "transparent" }
       GradientStop { position: 1.0; color: Qt.darker(backdrop.color, 1.5)}
