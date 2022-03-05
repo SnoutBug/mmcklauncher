@@ -44,13 +44,12 @@ Kirigami.FormLayout {
     property bool cfg_activationIndicator: plasmoid.configuration.activationIndicator
     property color cfg_indicatorColor: plasmoid.configuration.indicatorColor
     property bool cfg_enableGreeting: plasmoid.configuration.indicatorColor
-    property string cfg_defaultState: plasmoid.configuration.defaultState
-    property string cfg_defaultStateIcon: plasmoid.configuration.defaultStateIcon
-    property bool cfg_isCentered: plasmoid.configuration.isCentered
     property alias cfg_defaultPage: defaultPage.currentIndex
     property alias cfg_theming: theming.currentIndex
     property alias cfg_useExtraRunners: useExtraRunners.checked
     property alias cfg_customGreeting: customGreeting.text
+    property alias cfg_floating: floating.checked
+    property alias cfg_launcherPosition: launcherPosition.currentIndex
 
     Button {
         id: iconButton
@@ -191,6 +190,7 @@ Kirigami.FormLayout {
       onCheckedChanged: {
         plasmoid.configuration.enableGreeting = checked
         cfg_enableGreeting = checked
+        customGreeting.enabled = checked
       }
     }
     TextField {
@@ -201,14 +201,25 @@ Kirigami.FormLayout {
     Item {
         Kirigami.FormData.isSection: true
     }
+    ComboBox {
+        id: launcherPosition
+        Kirigami.FormData.label: i18n("Launcher Positioning:")
+        model: [
+        i18n("Default"),
+        i18n("Horizontal Center"),
+        i18n("Screen Center"),
+        ]
+        onCurrentIndexChanged: {
+          if (currentIndex == 2) {
+            floating.enabled = false
+          } else {
+            floating.enabled = true
+          }
+        }
+    }
     CheckBox {
-      Kirigami.FormData.label: i18n("In Center:")
-      text: i18n("Enabled")
-      checked: plasmoid.configuration.isCentered
-      onCheckedChanged: {
-        plasmoid.configuration.isCentered = checked
-        cfg_isCentered = checked
-      }
+        id: floating
+        text: i18n("Floating")
     }
     Item {
         Kirigami.FormData.isSection: true
@@ -236,9 +247,7 @@ Kirigami.FormLayout {
     }
     CheckBox {
         id: useExtraRunners
-
         Kirigami.FormData.label: i18n("Search:")
-
         text: i18n("Expand search to bookmarks, files and emails")
     }
     Item {

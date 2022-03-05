@@ -22,7 +22,6 @@ import QtGraphicalEffects 1.12
 import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.plasma.components 3.0 as PlasmaComponents
 import org.kde.kcoreaddons 1.0 as KCoreAddons
-import QtGraphicalEffects 1.0
 
 Item {
   id: main
@@ -31,8 +30,8 @@ Item {
   signal  newTextQuery(string text)
 
   readonly property color textColor: plasmoid.configuration.theming == 0 ? "#FFFFFF" : plasmoid.configuration.theming == 1 ? "#000000" : PlasmaCore.Theme.textColor
-  readonly property string textFont: plasmoid.configuration.theming == 2 ? PlasmaCore.Theme.defaultFont : "SF Pro Text"
-
+  readonly property string textFont: plasmoid.configuration.theming == 2 ? PlasmaCore.Theme.defaultFont : "SF Pro Text" //This is the font that was used in the original design by Max McKinney
+  readonly property bool isTop: plasmoid.location == PlasmaCore.Types.TopEdge & plasmoid.configuration.launcherPosition != 2 & !plasmoid.configuration.floating
 
   KCoreAddons.KUser {
       id: kuser
@@ -53,41 +52,57 @@ Item {
     searchBar.clear()
     searchBar.focus = true
     appList.reset()
-    //runnerList.reset()
   }
   function reset(){
     searchBar.clear()
     searchBar.focus = true
     appList.reset()
-    //runnerList.reset()
   }
 
   Rectangle {
     id: backdrop
     x: 0
-    y: 200 //175
+    y: isTop ? 0 : 200 * PlasmaCore.Units.devicePixelRatio
     width: main.width
-    height: main.height - y
+    height: isTop ? main.height - 200 * PlasmaCore.Units.devicePixelRatio : main.height - y
     color: plasmoid.configuration.theming == 0 ? "#131314" : plasmoid.configuration.theming == 1 ? "#ECEDEE" : PlasmaCore.Theme.backgroundColor
+    radius: plasmoid.configuration.floating ? 10 : 0
+    Rectangle {
+      id: topCorner
+      visible: plasmoid.configuration.floating & !isTop
+      anchors.top: backdrop.top
+      color: backdrop.color
+      width: backdrop.width
+      height: 20
+    }
+    Rectangle {
+      id: bottomCorner
+      visible: plasmoid.configuration.floating & isTop
+      anchors.bottom: backdrop.bottom
+      color: backdrop.color
+      width: backdrop.width
+      height: 20
+    }
   }
   //Floating Avatar
   Item {
     id: avatarParent
     x: main.width / 2
     y: - root.margins.top
-    FloatingAvatar { //i hate this
+    FloatingAvatar { //Anyone looking for an unpredictable number generator?
       id: floatingAvatar
-      //visualParent: avatarParent
-      avatarWidth: 125 //100
+      visualParent: root
+      isTop: main.isTop
+      avatarWidth: 125 * PlasmaCore.Units.devicePixelRatio
       visible: root.visible
     }
   }
   //Power & Settings
   Item {
-    Header{
+    Header {
       x: main.width - width - iconSize / 2
-      y: iconSize / 2
-      iconSize: 20//15
+      y: isTop ? main.height - 2 * height - iconSize / 2 : iconSize / 2
+      iconSize: 20 * PlasmaCore.Units.devicePixelRatio
     }
   }
   //Greeting
@@ -96,26 +111,26 @@ Item {
     PlasmaComponents.Label {
       id: nameLabel
       x: main.width / 2 - width / 2 //This centeres the Text
-      y: 80//60
+      y: isTop ? main.height - height - 80 * PlasmaCore.Units.devicePixelRatio : 80 * PlasmaCore.Units.devicePixelRatio
       text: plasmoid.configuration.enableGreeting && plasmoid.configuration.customGreeting ? plasmoid.configuration.customGreeting : plasmoid.configuration.enableGreeting ? 'Hi, ' + kuser.fullName : i18n("%1@%2", kuser.loginName, kuser.host)
       color: textColor
-      font.family: textFont //This is the font that was used in the original design by Max McKinney
-      font.pixelSize: 16
+      font.family: textFont
+      font.pixelSize: 16 * PlasmaCore.Units.devicePixelRatio
     }
   }
   //Searchbar
   Item {
     Rectangle {
-      x: 25//20
-      y: 125//100
+      x: 25 * PlasmaCore.Units.devicePixelRatio
+      y: isTop ? main.height - height - 125 * PlasmaCore.Units.devicePixelRatio : 125 * PlasmaCore.Units.devicePixelRatio
       width: main.width - 2 * x
-      height: 45//40
+      height: 45 * PlasmaCore.Units.devicePixelRatio
       radius: 6
       color: plasmoid.configuration.theming == 0 ? "#202124" : plasmoid.configuration.theming == 1 ? "#FFFFFF" : PlasmaCore.Theme.viewBackgroundColor
       Image {
         id: searchIcon
-        x: 15
-        width: 15
+        x: 15 * PlasmaCore.Units.devicePixelRatio
+        width: 15 * PlasmaCore.Units.devicePixelRatio
         height: width
         anchors.verticalCenter: parent.verticalCenter
         source: 'icons/feather/search.svg'
@@ -127,8 +142,8 @@ Item {
         }
       }
       Rectangle {
-        x: 45
-        width: parent.width - 60
+        x: 45 * PlasmaCore.Units.devicePixelRatio
+        width: parent.width - 60 * PlasmaCore.Units.devicePixelRatio
         height: searchBar.height
         anchors.verticalCenter: parent.verticalCenter
         clip: true
@@ -147,7 +162,7 @@ Item {
           selectByMouse: true
           selectionColor: plasmoid.configuration.theming == 0 ? "#141414" : plasmoid.configuration.theming == 1 ? "#EBEBEB" : PlasmaCore.Theme.highlightedTextColor
           font.family: textFont
-          font.pixelSize: 13
+          font.pixelSize: 13 * PlasmaCore.Units.devicePixelRatio
           Text {
             anchors.fill: parent
             text: 'Search your computer'
@@ -200,66 +215,66 @@ Item {
   //List of Apps
   AppList {
     id: appList
-    //x: 25
     state: "visible"
     anchors.top: backdrop.top
-    width: main.width - 30
+    anchors.bottom: backdrop.bottom
+    width: main.width - 30 * PlasmaCore.Units.devicePixelRatio
     height: main.height - y
     visible: opacity > 0
     states: [
     State {
       name: "visible"; when: (!searching)
       PropertyChanges { target: appList; opacity: 1.0 }
-      PropertyChanges { target: appList; x: 25 }
+      PropertyChanges { target: appList; x: 25 * PlasmaCore.Units.devicePixelRatio }
     },
     State {
       name: "hidden"; when: (searching)
       PropertyChanges { target: appList; opacity: 0.0}
-      PropertyChanges { target: appList; x: 5}
+      PropertyChanges { target: appList; x: 5 * PlasmaCore.Units.devicePixelRatio}
     }]
     transitions: [
       Transition {
         to: "visible"
         NumberAnimation {properties: 'opacity'; duration: 40;}
-        NumberAnimation {properties: 'x'; from: 5; duration: 40;}
+        NumberAnimation {properties: 'x'; from: 5 * PlasmaCore.Units.devicePixelRatio; duration: 40;}
       },
       Transition {
         to: "hidden"
         NumberAnimation {properties: 'opacity'; duration: 40;}
-        NumberAnimation {properties: 'x'; from: 25; duration: 40;}
+        NumberAnimation {properties: 'x'; from: 25 * PlasmaCore.Units.devicePixelRatio; duration: 40;}
       }
     ]
   }
   RunnerList {
     id: runnerList
     model: runnerModel
-    //x: 20
     state: "hidden"
     visible: opacity > 0//searching
     anchors.top: backdrop.top
-    width: main.width - 30
+    anchors.bottom: backdrop.bottom
+    width: main.width - 30 * PlasmaCore.Units.devicePixelRatio
     height: backdrop.height
     states: [
     State {
       name: "visible"; when: (searching)
       PropertyChanges { target: runnerList; opacity: 1.0 }
-      PropertyChanges { target: runnerList; x: 20 }
+      PropertyChanges { target: runnerList; x: 20  * PlasmaCore.Units.devicePixelRatio}
     },
     State {
       name: "hidden"; when: (!searching)
       PropertyChanges { target: runnerList; opacity: 0.0}
-      PropertyChanges { target: runnerList; x: 40}
+      PropertyChanges { target: runnerList; x: 40 * PlasmaCore.Units.devicePixelRatio}
     }]
     transitions: [
       Transition {
         to: "visible"
         NumberAnimation {properties: 'opacity'; duration: 40;}
-        NumberAnimation {properties: 'x'; from: 40; duration: 40;}
+        NumberAnimation {properties: 'x'; from: 40 * PlasmaCore.Units.devicePixelRatio; duration: 40;}
       },
       Transition {
         to: "hidden"
         NumberAnimation {properties: 'opacity'; duration: 40;}
-        NumberAnimation {properties: 'x'; from: 40; duration: 40;}
+        NumberAnimation {properties: 'x'; from: 40 * PlasmaCore.Units.devicePixelRatio; duration: 40;}
       }
     ]
   }
@@ -268,8 +283,9 @@ Item {
     id: topShadow
     z: parent.z + 1
     width: main.width
-    height: 40//20
+    height: 40 * PlasmaCore.Units.devicePixelRatio
     anchors.top: backdrop.top
+    radius: isTop ? backdrop.radius : 0
     gradient: Gradient {
       GradientStop { position: 0.0; color: Qt.darker(backdrop.color, 1.5) }
       GradientStop { position: 1.0; color: "transparent" }//"#0d0d0d"
@@ -293,8 +309,9 @@ Item {
     id: bottomShadow
     z: parent.z + 1
     width: main.width
-    height: 40//20
+    height: 40 * PlasmaCore.Units.devicePixelRatio
     anchors.bottom: backdrop.bottom
+    radius: !isTop ? backdrop.radius : 0
     gradient: Gradient {
       GradientStop { position: 0.0; color: "transparent" }
       GradientStop { position: 1.0; color: Qt.darker(backdrop.color, 1.5)}

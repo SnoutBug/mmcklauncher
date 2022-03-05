@@ -191,9 +191,7 @@ Item {
 
     PlasmaCore.FrameSvgItem {
         id: panelSvg
-
         visible: false
-
         imagePath: "widgets/panel-background"
     }
 

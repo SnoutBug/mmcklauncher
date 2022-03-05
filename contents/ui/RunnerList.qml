@@ -81,8 +81,8 @@ PlasmaExtras.ScrollArea {
   }
 
   Column {
-    y: 25
-    x: -10
+    y: 25 * PlasmaCore.Units.devicePixelRatio
+    x: -10 * PlasmaCore.Units.devicePixelRatio
     Repeater {
       id: repeater
       delegate:
@@ -98,18 +98,18 @@ PlasmaExtras.ScrollArea {
           height: image.height
           Image {
             id: image
-            x: 20
+            x: 20 * PlasmaCore.Units.devicePixelRatio
             source: repeater.model.modelForRow(index).description === 'Command Line' ? "icons/feather/code.svg" : repeater.model.modelForRow(index).description == 'Desktop Search' ? "icons/feather/search.svg" : "icons/feather/file-text.svg"
-            width: 15
+            width: 15 * PlasmaCore.Units.devicePixelRatio
             height: width
             //visible: repeater.model.modelForRow(index).count > 0
             PlasmaComponents.Label {
-              x: parent.width + 10
+              x: parent.width + 10 * PlasmaCore.Units.devicePixelRatio
               anchors.verticalCenter: parent.verticalCenter
               text: repeater.model.modelForRow(index).description
               color: main.textColor
               font.family: main.textFont
-              font.pixelSize: 12
+              font.pixelSize: 12 * PlasmaCore.Units.devicePixelRatio
             }
             ColorOverlay {
               visible: plasmoid.configuration.theming != 0
@@ -122,7 +122,7 @@ PlasmaExtras.ScrollArea {
         NavGrid {
           id: navGrid
           width: runnerList.width
-          height: Math.ceil(count * 42) + 10
+          height: Math.ceil(count * (42 * PlasmaCore.Units.devicePixelRatio )) + 10 * PlasmaCore.Units.devicePixelRatio
           anchors.top: headerLabel.bottom
           subIndex: index
           triggerModel: repeater.model.modelForRow(index)
@@ -152,7 +152,7 @@ PlasmaExtras.ScrollArea {
             if (y < runnerList.flickableItem.contentY) {
               runnerList.flickableItem.contentY = y;
             } else {
-              y += currentItem.height + 10 + 15;
+              y += currentItem.height + 10 * PlasmaCore.Units.devicePixelRatio + 15 * PlasmaCore.Units.devicePixelRatio;
               y -= runnerList.flickableItem.contentY;
               y -= runnerList.viewport.height;
 
@@ -194,7 +194,7 @@ PlasmaExtras.ScrollArea {
     }
     Item {
       width: 1
-      height: 40
+      height: 40 * PlasmaCore.Units.devicePixelRatio
     }
   }
 }

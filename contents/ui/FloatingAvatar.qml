@@ -26,16 +26,15 @@ PlasmaCore.Dialog { //cosmic background noise is less random than the placement 
   id: avatarContainer
 
   property int avatarWidth
-
+  property bool isTop: false
   flags: Qt.WindowStaysOnTopHint
-
   type: "Notification"
 
   x: root.x + root.width / 2 - width / 2
-  y: root.y - width / 2
-
+  y: isTop ? root.y + root.height - width / 2 : root.y - width / 2
+  
   mainItem:
-  Item{
+  Item {
    onParentChanged: {
      //This removes the dialog background
       if (parent){
@@ -44,7 +43,6 @@ PlasmaCore.Dialog { //cosmic background noise is less random than the placement 
           popupWindow.backgroundHints = PlasmaCore.Types.NoBackground
         }
       }
-      console.log('Avatar placed at ', x, y)
     }
   }
   Item {

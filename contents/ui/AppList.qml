@@ -16,19 +16,14 @@
  *   Free Software Foundation, Inc.,                                         *
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA .          *
  ****************************************************************************/
-import QtQuick 2.12
-
-import org.kde.plasma.core 2.0 as PlasmaCore
-import org.kde.plasma.extras 2.0 as PlasmaExtras
-
-import org.kde.plasma.private.kicker 0.1 as Kicker
-import QtQuick.Window 2.2
-import org.kde.plasma.components 3.0 as PlasmaComponents
-import QtQuick.Layouts 1.15
-import QtQuick.Controls 2.15
-import org.kde.draganddrop 2.0
 
 import QtGraphicalEffects 1.0
+
+import QtQuick 2.12
+import QtQuick.Controls 2.15
+
+import org.kde.plasma.core 2.0 as PlasmaCore
+import org.kde.plasma.components 3.0 as PlasmaComponents
 
 ScrollView {
   id: scrollView
@@ -38,6 +33,8 @@ ScrollView {
   }
   width: parent.width
   height: parent.height
+
+  contentWidth: - 1 //no horizontal scrolling
 
   property bool grabFocus: false
   property bool showDescriptions: false
@@ -78,20 +75,20 @@ ScrollView {
     width: parent.width
     Item { //Spacer
       width: 1
-      height: 20
+      height: 20 * PlasmaCore.Units.devicePixelRatio
     }
     Image {
       id: starImage
         source: "icons/feather/star.svg"
-        width: 15
+        width: 15 * PlasmaCore.Units.devicePixelRatio
         height: width
       PlasmaComponents.Label {
-        x: parent.width + 10
+        x: parent.width + 10 * PlasmaCore.Units.devicePixelRatio
         anchors.verticalCenter: parent.verticalCenter
         text: "Favorite Apps"
         color: main.textColor
         font.family: main.textFont
-        font.pixelSize: 12
+        font.pixelSize: 12 * PlasmaCore.Units.devicePixelRatio
       }
       ColorOverlay {
         visible: plasmoid.configuration.theming != 0
@@ -102,13 +99,13 @@ ScrollView {
     }
     Item { //Spacer
       width: 1
-      height: 10
+      height: 10 * PlasmaCore.Units.devicePixelRatio
     }
 
     Flow { //Favorites
       id: flow
       x: 0
-      width: scrollView.width - 10
+      width: scrollView.width - 10 * PlasmaCore.Units.devicePixelRatio
       Repeater {
         model: pinnedModel[0]
         delegate:
@@ -120,11 +117,11 @@ ScrollView {
 
     Item { //Spacer
       width: 1
-      height: 24
+      height: 24 * PlasmaCore.Units.devicePixelRatio
     }
     Image {
       id: sortingImage
-      width: 15
+      width: 15 * PlasmaCore.Units.devicePixelRatio
       height: width
       //I don't like it this way but I have to assign custom images anyways, so it's not too bad... right?
       states: [
@@ -202,16 +199,16 @@ ScrollView {
       ]
       PlasmaComponents.Label {
         id: sortingLabel
-        x: parent.width + 10
+        x: parent.width + 10 * PlasmaCore.Units.devicePixelRatio
         anchors.verticalCenter: parent.verticalCenter
         text: "All"
         color: main.textColor
         font.family: main.textFont
-        font.pixelSize: 12
+        font.pixelSize: 12 * PlasmaCore.Units.devicePixelRatio
       }
       MouseArea {
         id: mouseArea
-        width: parent.width + sortingLabel.width + 5
+        width: parent.width + sortingLabel.width + 5 * PlasmaCore.Units.devicePixelRatio
         height: parent.height
         cursorShape: Qt.PointingHandCursor
         hoverEnabled: true
@@ -245,15 +242,15 @@ ScrollView {
     Item { //Spacer
       id: spacer
       width: 1
-      height: 10
+      height: 10 * PlasmaCore.Units.devicePixelRatio
     }
 
-      Grid { //All Apps
+      Grid { //All Apps // want to convert this to listview later to use verticallayoutdireciton
         id: allAppsGrid
-        x: - 10
+        x: - 10 * PlasmaCore.Units.devicePixelRatio
         columns: 1
-        width: scrollView.width - 10
-        //active: opacity == 1
+        width: scrollView.width - 10 * PlasmaCore.Units.devicePixelRatio
+        //verticalLayoutDirection: main.isTop ? ListView.BottomToTop : ListView.TopToBottom
         visible: opacity > 0
         Repeater {
           id: allAppsRepeater
@@ -271,7 +268,7 @@ ScrollView {
         State {
           name: "hidden"; when: (sortingLabel.text != 'All')
           PropertyChanges { target: allAppsGrid; opacity: 0.0 }
-          PropertyChanges { target: allAppsGrid; x: (!isRight ? -20 : 0) }
+          PropertyChanges { target: allAppsGrid; x: (!isRight ? -20 * PlasmaCore.Units.devicePixelRatio : 0) }
         },
         State {
           name: "shown"; when: (sortingLabel.text == 'All')
@@ -282,12 +279,12 @@ ScrollView {
           Transition {
             to: "hidden"
             NumberAnimation { properties: 'opacity'; duration: 40;}
-            NumberAnimation { properties: 'x'; from: -10; duration: 40;}
+            NumberAnimation { properties: 'x'; from: -10 * PlasmaCore.Units.devicePixelRatio; duration: 40;}
           },
           Transition {
             to: "shown"
             NumberAnimation { properties: 'opacity'; duration: 40; }
-            NumberAnimation { properties: 'x'; from: (isRight ? -20 : 0); duration: 40; }
+            NumberAnimation { properties: 'x'; from: (isRight ? -20 * PlasmaCore.Units.devicePixelRatio : 0); duration: 40; }
           }
         ]
       }
@@ -297,7 +294,7 @@ ScrollView {
         id: appCategories
         columns: 1
         //anchors.top: allAppsGrid.opacity != 1 ? allAppsGrid.top : NULL
-        width: scrollView.width - 10
+        width: scrollView.width - 10 * PlasmaCore.Units.devicePixelRatio
         visible: opacity > 0
         Repeater {
           id: categoriesRepeater
@@ -311,23 +308,23 @@ ScrollView {
         State {
           name: "hidden"; when: (currentStateIndex % 2 === 1)
           PropertyChanges { target: appCategories; opacity: 0.0 }
-          PropertyChanges { target: appCategories; x: (isRight ? -20 : 0) }
+          PropertyChanges { target: appCategories; x: (isRight ? -20 * PlasmaCore.Units.devicePixelRatio : 0) }
         },
         State {
           name: "shown"; when: (currentStateIndex % 2 === 0)
           PropertyChanges { target: appCategories; opacity: 1.0 }
-          PropertyChanges { target: appCategories; x: -10 }
+          PropertyChanges { target: appCategories; x: -10 * PlasmaCore.Units.devicePixelRatio }
         }]
         transitions: [
           Transition {
             to: "hidden"
             NumberAnimation { properties: 'opacity'; duration: 40;}
-            NumberAnimation { properties: 'x'; from: -10; duration: 40;}
+            NumberAnimation { properties: 'x'; from: -10 * PlasmaCore.Units.devicePixelRatio; duration: 40;}
           },
           Transition {
             to: "shown"
             NumberAnimation { properties: 'opacity'; duration: 40; }
-            NumberAnimation { properties: 'x'; from: (isRight ? -20 : 0); duration: 40; }
+            NumberAnimation { properties: 'x'; from: (isRight ? -20 * PlasmaCore.Units.devicePixelRatio : 0); duration: 40; }
           }
         ]
       }
@@ -335,7 +332,7 @@ ScrollView {
       Grid { //Categories
         id: appCategories2
         columns: 1
-        width: scrollView.width - 10
+        width: scrollView.width - 10 * PlasmaCore.Units.devicePixelRatio
         visible: opacity > 0
         Repeater {
           id: categoriesRepeater2
@@ -349,30 +346,30 @@ ScrollView {
         State {
           name: "hidden"; when: (currentStateIndex % 2 === 0)
           PropertyChanges { target: appCategories2; opacity: 0.0 }
-          PropertyChanges { target: appCategories2; x: (isRight ? -20 : 0) }
+          PropertyChanges { target: appCategories2; x: (isRight ? -20 * PlasmaCore.Units.devicePixelRatio : 0) }
         },
         State {
           name: "shown"; when: (currentStateIndex % 2 === 1)
           PropertyChanges { target: appCategories2; opacity: 1.0 }
-          PropertyChanges { target: appCategories2; x: -10 }
+          PropertyChanges { target: appCategories2; x: -10  * PlasmaCore.Units.devicePixelRatio}
         }]
         transitions: [
           Transition {
             to: "hidden"
             NumberAnimation { properties: 'opacity'; duration: 40; }
-            NumberAnimation { properties: 'x'; from: -10; duration: 40; }
+            NumberAnimation { properties: 'x'; from: -10 * PlasmaCore.Units.devicePixelRatio; duration: 40; }
           },
           Transition {
             to: "shown"
             NumberAnimation { properties: 'opacity'; duration: 40; }
-            NumberAnimation { properties: 'x'; from: (isRight ? -20 : 0);duration: 40; }
+            NumberAnimation { properties: 'x'; from: (isRight ? -20 * PlasmaCore.Units.devicePixelRatio : 0);duration: 40; }
           }
         ]
       }
 
     Item { //Spacer
       width: 1
-      height: 20
+      height: 20 * PlasmaCore.Units.devicePixelRatio
     }
   }
 }

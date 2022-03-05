@@ -31,8 +31,8 @@ import "../code/tools.js" as Tools
 
 Item {
   id: allItem
-  width: rect.width + 4
-  height: rect.height + 4
+  width: rect.width + 4 * PlasmaCore.Units.devicePixelRatio
+  height: rect.height + 4 * PlasmaCore.Units.devicePixelRatio
 
   property bool highlighted: false
   property bool isDraging: false
@@ -79,30 +79,30 @@ Item {
   }
   Rectangle {
     id: rect
-    x: 10
-    y: 10
-    width: main.width - 40 - allItem.x
-    height: 38
+    x: 10 * PlasmaCore.Units.devicePixelRatio
+    y: 10 * PlasmaCore.Units.devicePixelRatio
+    width: main.width - 40 * PlasmaCore.Units.devicePixelRatio - allItem.x
+    height: 38 * PlasmaCore.Units.devicePixelRatio
     z: -20
     color: backdrop.color
     border.color: "transparent"
     border.width: 1
     radius: 6
     PlasmaCore.IconItem {
-      x: 9
+      x: 9 * PlasmaCore.Units.devicePixelRatio
       anchors.verticalCenter: rect.verticalCenter
       id: appicon
-      width: 24
+      width: 24 * PlasmaCore.Units.devicePixelRatio
       height: width
       source: model.decoration
       PlasmaComponents.Label {
         id: appname
-        x: appicon.width + 9
+        x: appicon.width + 9 * PlasmaCore.Units.devicePixelRatio
         anchors.verticalCenter: appicon.verticalCenter
         text: ("name" in model ? model.name : model.display)
         color: main.textColor
         font.family: main.textFont
-        font.pixelSize: 12
+        font.pixelSize: 12 * PlasmaCore.Units.devicePixelRatio
       }
     }
     states: [

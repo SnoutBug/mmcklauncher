@@ -25,14 +25,13 @@ import org.kde.plasma.plasmoid 2.0
 import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.kcoreaddons 1.0 as KCoreAddons
 import org.kde.kirigami 2.13 as Kirigami
-import QtQuick.Controls 2.15
 
 import "../code/tools.js" as Tools
 
 Item {
   id: favItem
-  width: rect.width + 10
-  height: rect.height + 10
+  width: rect.width + 10 * PlasmaCore.Units.devicePixelRatio
+  height: rect.height + 10 * PlasmaCore.Units.devicePixelRatio
 
   signal itemActivated(int index, string actionId, string argument)
 
@@ -59,30 +58,30 @@ Item {
   }
   Rectangle {
     id: rect
-    x: 10
-    y: 10
-    width: appname.width + appicon.width + 3 * 10 + 5
-    height: 45//40
+    x: 10 * PlasmaCore.Units.devicePixelRatio
+    y: 10 * PlasmaCore.Units.devicePixelRatio
+    width: appname.width + appicon.width + 3 * (10 * PlasmaCore.Units.devicePixelRatio) + 5 * PlasmaCore.Units.devicePixelRatio
+    height: 45 * PlasmaCore.Units.devicePixelRatio
     z: -20
     color: plasmoid.configuration.theming == 0 ? "#202124" : plasmoid.configuration.theming == 1 ? "#E0E1E3" : PlasmaCore.Theme.buttonBackgroundColor
-    border.color: "transparent" //Qt.darker(color, 1.05) //plasmoid.configuration.theming == 0 ? "141516" : plasmoid.configuration.theming == 1 ? "#FAFAFA" : PlasmaCore.Theme.buttonAlternateBackgroundColor
+    border.color: "transparent"
     border.width: 1
     radius: 6
     PlasmaCore.IconItem {
-      x: 10
+      x: 10 * PlasmaCore.Units.devicePixelRatio
       anchors.verticalCenter: rect.verticalCenter
       id: appicon
-      width: 25
+      width: 25 * PlasmaCore.Units.devicePixelRatio
       height: width
       source: model.decoration
       PlasmaComponents.Label {
         id: appname
-        x: appicon.width + 10
+        x: appicon.width + 10 * PlasmaCore.Units.devicePixelRatio
         anchors.verticalCenter: appicon.verticalCenter
         text: ("name" in model ? model.name : model.display)
         color: plasmoid.configuration.theming != 2 ? main.textColor : PlasmaCore.Theme.buttonTextColor
         font.family: main.textFont
-        font.pixelSize: 12
+        font.pixelSize: 12 * PlasmaCore.Units.devicePixelRatio
       }
     }
     states: [

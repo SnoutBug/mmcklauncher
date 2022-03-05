@@ -37,10 +37,6 @@ Item {
         width: plasmoid.configuration.activationIndicator ? parent.width * 0.65 : parent.width
         height: plasmoid.configuration.activationIndicator ? parent.height * 0.65 : parent.height
         anchors.centerIn: parent
-        //anchors.fill: parent
-
-        /*readonly property double aspectRatio: (vertical ? implicitHeight / implicitWidth
-            : implicitWidth / implicitHeight)*/
 
         source: useCustomButtonImage ? plasmoid.configuration.customButtonImage : plasmoid.configuration.icon
 
@@ -52,7 +48,7 @@ Item {
           id: indicator
           width: 0
           anchors.horizontalCenter: parent.horizontalCenter
-          height: 3
+          height: 3 * PlasmaCore.Units.devicePixelRatio
           radius: 10
           y: parent.height + height
           color: plasmoid.configuration.indicatorColor

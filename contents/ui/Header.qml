@@ -60,7 +60,7 @@ Item {
     onClicked: {
       KQuickAddons.KCMShell.openSystemSettings("kcm_quick")
       root.toggle()
-      //plasmoid.action("configure").trigger()
+      //plasmoid.action("configure").trigger() //might implement later
     }
   }
   PlasmaComponents.RoundButton {

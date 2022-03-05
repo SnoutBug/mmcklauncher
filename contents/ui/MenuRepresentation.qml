@@ -1,23 +1,24 @@
-/***************************************************************************
- *   Copyright (C) 2014 by Weng Xuetian <wengxt@gmail.com>
- *   Copyright (C) 2013-2017 by Eike Hein <hein@kde.org>                   *
- *   Copyright (C) 2021 by Prateek SU <pankajsunal123@gmail.com>           *
- *                                                                         *
- *   This program is free software; you can redistribute it and/or modify  *
- *   it under the terms of the GNU General Public License as published by  *
- *   the Free Software Foundation; either version 2 of the License, or     *
- *   (at your option) any later version.                                   *
- *                                                                         *
- *   This program is distributed in the hope that it will be useful,       *
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of        *
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         *
- *   GNU General Public License for more details.                          *
- *                                                                         *
- *   You should have received a copy of the GNU General Public License     *
- *   along with this program; if not, write to the                         *
- *   Free Software Foundation, Inc.,                                       *
- *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA .        *
- ***************************************************************************/
+/*****************************************************************************
+ *   Copyright (C) 2014 by Weng Xuetian <wengxt@gmail.com>                   *
+ *   Copyright (C) 2013-2017 by Eike Hein <hein@kde.org>                     *
+ *   Copyright (C) 2021 by Prateek SU <pankajsunal123@gmail.com>             *
+ *   Copyright (C) 2022 by Friedrich Schriewer <friedrich.schriewer@gmx.net> *
+ *                                                                           *
+ *   This program is free software; you can redistribute it and/or modify    *
+ *   it under the terms of the GNU General Public License as published by    *
+ *   the Free Software Foundation; either version 2 of the License, or       *
+ *   (at your option) any later version.                                     *
+ *                                                                           *
+ *   This program is distributed in the hope that it will be useful,         *
+ *   but WITHOUT ANY WARRANTY; without even the implied warranty of          *
+ *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the           *
+ *   GNU General Public License for more details.                            *
+ *                                                                           *
+ *   You should have received a copy of the GNU General Public License       *
+ *   along with this program; if not, write to the                           *
+ *   Free Software Foundation, Inc.,                                         *
+ *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA .          *
+ ****************************************************************************/
 
 import QtQuick 2.12
 import QtQuick.Layouts 1.12
@@ -27,11 +28,11 @@ import org.kde.plasma.components 3.0 as PlasmaComponents
 PlasmaCore.Dialog {
     id: root
 
-    type: "Normal"
-
     objectName: "popupWindow"
     flags: Qt.WindowStaysOnTopHint
-    //location: PlasmaCore.Types.Floating
+
+    location: plasmoid.configuration.floating || plasmoid.configuration.launcherPosition == 2 ? "Floating" : plasmoid.location
+
     hideOnWindowDeactivate: true
 
     onVisibleChanged: {
@@ -45,6 +46,18 @@ PlasmaCore.Dialog {
         }
     }
 
+    onHeightChanged: {
+        var pos = popupPosition(width, height);
+        x = pos.x;
+        y = pos.y;
+    }
+
+    onWidthChanged: {
+        var pos = popupPosition(width, height);
+        x = pos.x;
+        y = pos.y;
+    }
+
     function toggle() {
         root.visible = false;
     }
@@ -55,15 +68,14 @@ PlasmaCore.Dialog {
 
     function popupPosition(width, height) {
         var screenAvail = plasmoid.availableScreenRect;
-        var screenGeom = plasmoid.screenGeometry;
+        var screen/*Geom*/ = plasmoid.screenGeometry;
         //QtBug - QTBUG-64115
-        var screen = Qt.rect(screenAvail.x + screenGeom.x,
+        /*var screen = Qt.rect(screenAvail.x + screenGeom.x,
             screenAvail.y + screenGeom.y,
             screenAvail.width,
-            screenAvail.height);
+            screenAvail.height);*/
 
-        var offset = 0;
-
+        var offset = plasmoid.configuration.floating ? parent.height : 0;
         // Fall back to bottom-left of screen area when the applet is on the desktop or floating.
         var x = offset;
         var y = screen.height - height - offset;
@@ -72,13 +84,34 @@ PlasmaCore.Dialog {
         var appletTopLeft = parent.mapToGlobal(0, 0);
         var appletBottomLeft = parent.mapToGlobal(0, parent.height);
 
-        if (plasmoid.configuration.isCentered){
+        if (plasmoid.configuration.launcherPosition != 0){
           x = horizMidPoint - width / 2;
         } else {
           x = (appletTopLeft.x < horizMidPoint) ? screen.x : (screen.x + screen.width) - width;
+          if (plasmoid.configuration.floating) {
+            if (appletTopLeft.x < horizMidPoint & plasmoid.location != PlasmaCore.Types.TopEdge) {
+              x += offset
+            } else if (appletTopLeft.x + width > horizMidPoint & plasmoid.location != PlasmaCore.Types.TopEdge){
+              x -= offset
+            }
+          }
         }
 
-        y = screen.height - fs.height + root.margins.bottom + root.margins.top;
+        if (plasmoid.configuration.launcherPosition != 2){
+          if (plasmoid.location == PlasmaCore.Types.TopEdge) {
+            if (plasmoid.configuration.floating) {
+                          /*this is floatingAvatar.width*/
+              offset = (125 * PlasmaCore.Units.devicePixelRatio) / 2  - parent.height
+            }
+            y = parent.height + panelSvg.margins.bottom + offset;
+          } else {
+            y = screen.height - parent.height - height - panelSvg.margins.top - offset;
+          }
+        } else {
+          y = vertMidPoint - height / 2
+        }
+
+
 
         return Qt.point(x, y);
     }
@@ -86,8 +119,8 @@ PlasmaCore.Dialog {
     FocusScope {
         id: fs
         focus: true
-        Layout.minimumWidth: 515//450
-        Layout.minimumHeight: 600//530
+        Layout.minimumWidth: 515 * PlasmaCore.Units.devicePixelRatio
+        Layout.minimumHeight: 600 * PlasmaCore.Units.devicePixelRatio
         Layout.maximumWidth: Layout.minimumWidth
         Layout.maximumHeight: Layout.minimumHeight
 
@@ -101,7 +134,6 @@ PlasmaCore.Dialog {
             id: main
           }
         }
-
 
         Keys.onPressed: {
             if (event.key == Qt.Key_Escape) {
