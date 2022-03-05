@@ -17,5 +17,8 @@ plasmapkg2 --install com.github.SnoutBug.mmckLauncher.tar.gz
 rm com.github.SnoutBug.mmckLauncher.tar.gz
 ```
 
+## Optional Requirements
+Font: [SF Pro Text](https://github.com/sahibjotsaggu/San-Francisco-Pro-Fonts/blob/master/SF-Pro-Text-Semibold.otf)
+
 ## KDE Store
 [store.kde.org/p/1720532](https://store.kde.org/p/1720532/)
