@@ -39,10 +39,10 @@ PlasmaCore.Dialog {
         if (!visible) {
             reset();
         } else {
+            main.updateStartpage()
             var pos = popupPosition(width, height);
             x = pos.x;
             y = pos.y;
-            requestActivate();
         }
     }
 
@@ -75,7 +75,13 @@ PlasmaCore.Dialog {
             screenAvail.width,
             screenAvail.height);*/
 
-        var offset = plasmoid.configuration.floating ? parent.height * 0.75 : 0;
+        var offset = 0
+
+        if (plasmoid.configuration.offsetX > 0 && plasmoid.configuration.floating) {
+          offset = plasmoid.configuration.offsetX
+        } else {
+          offset = plasmoid.configuration.floating ? parent.height * 0.75 : 0
+        }
         // Fall back to bottom-left of screen area when the applet is on the desktop or floating.
         var x = offset;
         var y = screen.height - height - offset;
@@ -101,17 +107,22 @@ PlasmaCore.Dialog {
           if (plasmoid.location == PlasmaCore.Types.TopEdge) {
             if (plasmoid.configuration.floating) {
                           /*this is floatingAvatar.width*/
-              offset = (125 * PlasmaCore.Units.devicePixelRatio) / 2 + parent.height * 0.125
+              if (plasmoid.configuration.offsetY > 0) {
+                offset = (125 * PlasmaCore.Units.devicePixelRatio) / 2 + plasmoid.configuration.offsetY
+              } else {
+                offset = (125 * PlasmaCore.Units.devicePixelRatio) / 2 + parent.height * 0.125
+              }
             }
             y = parent.height + panelSvg.margins.bottom + offset;
           } else {
+            if (plasmoid.configuration.offsetY > 0) {
+              offset = plasmoid.configuration.offsetY
+            }
             y = screen.height - parent.height - height - panelSvg.margins.top - offset;
           }
         } else {
           y = vertMidPoint - height / 2
         }
-
-
 
         return Qt.point(x, y);
     }

@@ -48,6 +48,10 @@ Item {
       }
   }
 
+  function updateStartpage(){
+    appList.currentStateIndex = plasmoid.configuration.defaultPage
+  }
+
   function reload() {
     searchBar.clear()
     searchBar.focus = true
@@ -165,7 +169,7 @@ Item {
           font.pixelSize: 13 * PlasmaCore.Units.devicePixelRatio
           Text {
             anchors.fill: parent
-            text: 'Search your computer'
+            text: i18n("Search your computer")
             color: plasmoid.configuration.theming == 0 ? "#686B71" : plasmoid.configuration.theming == 1 ? "#798591" : PlasmaCore.Theme.disabledTextColor
             visible: !parent.text
           }
@@ -249,7 +253,7 @@ Item {
     id: runnerList
     model: runnerModel
     state: "hidden"
-    visible: opacity > 0//searching
+    visible: opacity > 0
     anchors.top: backdrop.top
     anchors.bottom: backdrop.bottom
     width: main.width - 30 * PlasmaCore.Units.devicePixelRatio
@@ -288,7 +292,7 @@ Item {
     radius: isTop ? backdrop.radius : 0
     gradient: Gradient {
       GradientStop { position: 0.0; color: Qt.darker(backdrop.color, 1.5) }
-      GradientStop { position: 1.0; color: "transparent" }//"#0d0d0d"
+      GradientStop { position: 1.0; color: "transparent" }
     }
     states: [
     State {

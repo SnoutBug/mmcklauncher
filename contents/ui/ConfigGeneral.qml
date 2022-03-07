@@ -23,6 +23,7 @@ import QtQuick 2.12
 import QtQuick.Controls 2.5
 import QtQuick.Dialogs 1.0
 
+import org.kde.plasma.components 3.0 as PlasmaComponents
 import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.kquickcontrolsaddons 2.0 as KQuickAddons
 import org.kde.draganddrop 2.0 as DragDrop
@@ -50,6 +51,8 @@ Kirigami.FormLayout {
     property alias cfg_customGreeting: customGreeting.text
     property alias cfg_floating: floating.checked
     property alias cfg_launcherPosition: launcherPosition.currentIndex
+    property alias cfg_offsetX: screenOffset.value
+    property alias cfg_offsetY: panelOffset.value
 
     Button {
         id: iconButton
@@ -173,7 +176,7 @@ Kirigami.FormLayout {
         onPressed: colorDialog.visible ? colorDialog.close() : colorDialog.open()
         ColorDialog {
         id: colorDialog
-        title: "Please choose a color"
+        title: i18n("Please choose a color")
         onAccepted: {
             cfg_indicatorColor = colorDialog.color
         }
@@ -196,7 +199,7 @@ Kirigami.FormLayout {
     TextField {
       id: customGreeting
       Kirigami.FormData.label: i18n("Custom Greeting Text:")
-      placeholderText: "No custom greeting set"
+      placeholderText: i18n("No custom greeting set")
     }
     Item {
         Kirigami.FormData.isSection: true
@@ -219,8 +222,36 @@ Kirigami.FormLayout {
         }
     }
     CheckBox {
-        id: floating
-        text: i18n("Floating")
+      id: floating
+      text: i18n("Floating")
+      onCheckedChanged: {
+        screenOffset.visible = checked
+        panelOffset.visible = checked
+      }
+    }
+    Slider {
+      id: screenOffset
+      visible: plasmoid.configuration.floating
+      Kirigami.FormData.label: i18n("Offset Screen Edge (0 is Default):")
+      from: 0
+      value: 0
+      to: 100
+      stepSize: 1
+      PlasmaComponents.ToolTip {
+          text: screenOffset.value
+      }
+    }
+    Slider {
+      id: panelOffset
+      visible: plasmoid.configuration.floating
+      Kirigami.FormData.label: i18n("Offset Panel (0 is Default):")
+      from: 0
+      value: 0
+      to: 100
+      stepSize: 1
+      PlasmaComponents.ToolTip {
+          text: panelOffset.value
+      }
     }
     Item {
         Kirigami.FormData.isSection: true

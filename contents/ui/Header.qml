@@ -37,7 +37,7 @@ Item {
     anchors.left: parent.left
 
     PlasmaComponents.ToolTip {
-        text: "Settings"
+        text: i18n("Settings")
     }
     Item {
       id: visualParentSettings
@@ -72,7 +72,7 @@ Item {
     anchors.right: parent.right
 
     PlasmaComponents.ToolTip {
-        text: "Power Off"
+        text: i18n("Power Off")
     }
     Image {
       id: powerImage

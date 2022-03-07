@@ -48,6 +48,9 @@ ScrollView {
   property bool hasListener: false
   property bool isRight: true
 
+  property var scrollpositon: 0.0
+  property var scrollheight: 0.0
+
   function updateModels() {
       item.pinnedModel = [globalFavorites, rootModel.modelForRow(0), rootModel.modelForRow(1)]
       item.allAppsModel = [rootModel.modelForRow(2)]
@@ -71,8 +74,18 @@ ScrollView {
         currentStateIndex = plasmoid.configuration.defaultPage
       }
   }
+  onContentHeightChanged: {
+    ScrollBar.vertical.position = scrollpositon * scrollheight / scrollView.contentHeight
+  }
   Column {
+    id: column
     width: parent.width
+    onPositioningComplete: {
+      scrollView.contentHeight = height
+      if (height < backdrop.height) {
+        scrollView.contentHeight = backdrop.height + 1
+      }
+    }
     Item { //Spacer
       width: 1
       height: 20 * PlasmaCore.Units.devicePixelRatio
@@ -85,7 +98,7 @@ ScrollView {
       PlasmaComponents.Label {
         x: parent.width + 10 * PlasmaCore.Units.devicePixelRatio
         anchors.verticalCenter: parent.verticalCenter
-        text: "Favorite Apps"
+        text: i18n("Favorite Apps")
         color: main.textColor
         font.family: main.textFont
         font.pixelSize: 12 * PlasmaCore.Units.devicePixelRatio
@@ -101,7 +114,6 @@ ScrollView {
       width: 1
       height: 10 * PlasmaCore.Units.devicePixelRatio
     }
-
     Flow { //Favorites
       id: flow
       x: 0
@@ -114,7 +126,6 @@ ScrollView {
         }
       }
     }
-
     Item { //Spacer
       width: 1
       height: 24 * PlasmaCore.Units.devicePixelRatio
@@ -127,72 +138,72 @@ ScrollView {
       states: [
       State {
         name: "all";
-        PropertyChanges { target: sortingLabel; text: 'All'}
+        PropertyChanges { target: sortingLabel; text: i18n("All")}
         PropertyChanges { target: sortingImage; source: 'icons/feather/file-text.svg'}
       },
       State {
         name: "dev";
-        PropertyChanges { target: sortingLabel; text: 'Developement'}
+        PropertyChanges { target: sortingLabel; text: i18n("Developement")}
         PropertyChanges { target: sortingImage; source: 'icons/feather/code.svg'}
         PropertyChanges { target: (currentStateIndex % 2 == 0 ? categoriesRepeater : categoriesRepeater2); model: rootModel.modelForRow(3)}
       },
       State {
         name: "games";
-        PropertyChanges { target: sortingLabel; text: 'Games'}
+        PropertyChanges { target: sortingLabel; text: i18n("Games")}
         PropertyChanges { target: sortingImage; source: 'icons/lucide/gamepad-2.svg'}
         PropertyChanges { target: (currentStateIndex % 2 == 0 ? categoriesRepeater : categoriesRepeater2); model: rootModel.modelForRow(4)}
       },
       State {
         name: "graphics";
-        PropertyChanges { target: sortingLabel; text: 'Graphics'}
+        PropertyChanges { target: sortingLabel; text: i18n("Graphics")}
         PropertyChanges { target: sortingImage; source: 'icons/feather/image.svg'}
         PropertyChanges { target: (currentStateIndex % 2 == 0 ? categoriesRepeater : categoriesRepeater2); model: rootModel.modelForRow(5)}
       },
       State {
         name: "internet";
-        PropertyChanges { target: sortingLabel; text: 'Internet'}
+        PropertyChanges { target: sortingLabel; text: i18n("Internet")}
         PropertyChanges { target: sortingImage; source: 'icons/feather/globe.svg'}
         PropertyChanges { target: (currentStateIndex % 2 == 0 ? categoriesRepeater : categoriesRepeater2); model: rootModel.modelForRow(6)}
       },
       State {
         name: "multimedia";
-        PropertyChanges { target: sortingLabel; text: 'Multimedia'}
+        PropertyChanges { target: sortingLabel; text: i18n("Multimedia")}
         PropertyChanges { target: sortingImage; source: 'icons/lucide/film.svg'}
         PropertyChanges { target: (currentStateIndex % 2 == 0 ? categoriesRepeater : categoriesRepeater2); model: rootModel.modelForRow(8)}
       },
       State {
         name: "office";
-        PropertyChanges { target: sortingLabel; text: 'Office'}
+        PropertyChanges { target: sortingLabel; text: i18n("Office")}
         PropertyChanges { target: sortingImage; source: 'icons/lucide/paperclip.svg'}
         PropertyChanges { target: (currentStateIndex % 2 == 0 ? categoriesRepeater : categoriesRepeater2); model: rootModel.modelForRow(9)}
       },
       State {
         name: "science";
-        PropertyChanges { target: sortingLabel; text: 'Science & Math'}
+        PropertyChanges { target: sortingLabel; text: i18n("Science & Math")}
         PropertyChanges { target: sortingImage; source: 'icons/lucide/flask-conical.svg'}
         PropertyChanges { target: (currentStateIndex % 2 == 0 ? categoriesRepeater : categoriesRepeater2); model: rootModel.modelForRow(10)}
       },
       State {
         name: "settings";
-        PropertyChanges { target: sortingLabel; text: 'Settings'}
+        PropertyChanges { target: sortingLabel; text: i18n("Settings")}
         PropertyChanges { target: sortingImage; source: 'icons/feather/settings.svg'}
         PropertyChanges { target: (currentStateIndex % 2 == 0 ? categoriesRepeater : categoriesRepeater2); model: rootModel.modelForRow(11)}
       },
       State {
         name: "system";
-        PropertyChanges { target: sortingLabel; text: 'System'}
+        PropertyChanges { target: sortingLabel; text: i18n("System")}
         PropertyChanges { target: sortingImage; source: 'icons/lucide/cpu.svg'}
         PropertyChanges { target: (currentStateIndex % 2 == 0 ? categoriesRepeater : categoriesRepeater2); model: rootModel.modelForRow(12)}
       },
       State {
         name: "utilities";
-        PropertyChanges { target: sortingLabel; text: 'Utilities'}
+        PropertyChanges { target: sortingLabel; text: i18n("Utilities")}
         PropertyChanges { target: sortingImage; source: 'icons/feather/tool.svg'}
         PropertyChanges { target: (currentStateIndex % 2 == 0 ? categoriesRepeater : categoriesRepeater2); model: rootModel.modelForRow(13)}
       },
       State {
         name: "lost";
-        PropertyChanges { target: sortingLabel; text: 'Lost & Found'}
+        PropertyChanges { target: sortingLabel; text: i18n("Lost & Found")}
         PropertyChanges { target: sortingImage; source: 'icons/feather/trash-2.svg'}
         PropertyChanges { target: (currentStateIndex % 2 == 0 ? categoriesRepeater : categoriesRepeater2); model: rootModel.modelForRow(7)}
       }
@@ -201,7 +212,7 @@ ScrollView {
         id: sortingLabel
         x: parent.width + 10 * PlasmaCore.Units.devicePixelRatio
         anchors.verticalCenter: parent.verticalCenter
-        text: "All"
+        text: i18n("All")
         color: main.textColor
         font.family: main.textFont
         font.pixelSize: 12 * PlasmaCore.Units.devicePixelRatio
@@ -245,12 +256,11 @@ ScrollView {
       height: 10 * PlasmaCore.Units.devicePixelRatio
     }
 
-      Grid { //All Apps // want to convert this to listview later to use verticallayoutdireciton
+      Grid {
         id: allAppsGrid
         x: - 10 * PlasmaCore.Units.devicePixelRatio
         columns: 1
         width: scrollView.width - 10 * PlasmaCore.Units.devicePixelRatio
-        //verticalLayoutDirection: main.isTop ? ListView.BottomToTop : ListView.TopToBottom
         visible: opacity > 0
         Repeater {
           id: allAppsRepeater
@@ -266,12 +276,12 @@ ScrollView {
         }
         states: [
         State {
-          name: "hidden"; when: (sortingLabel.text != 'All')
+          name: "hidden"; when: (sortingImage.state != 'all')
           PropertyChanges { target: allAppsGrid; opacity: 0.0 }
           PropertyChanges { target: allAppsGrid; x: (!isRight ? -20 * PlasmaCore.Units.devicePixelRatio : 0) }
         },
         State {
-          name: "shown"; when: (sortingLabel.text == 'All')
+          name: "shown"; when: (sortingImage.state == 'all')
           PropertyChanges { target: allAppsGrid; opacity: 1.0 }
           PropertyChanges { target: allAppsGrid; x: -10 }
         }]
@@ -287,13 +297,16 @@ ScrollView {
             NumberAnimation { properties: 'x'; from: (isRight ? -20 * PlasmaCore.Units.devicePixelRatio : 0); duration: 40; }
           }
         ]
+        onStateChanged: {
+          if (state == 'hidden') {
+            scrollpositon = scrollView.ScrollBar.vertical.position
+            scrollheight = scrollView.contentHeight
+          }
+        }
       }
-
-
       Grid { //Categories
         id: appCategories
         columns: 1
-        //anchors.top: allAppsGrid.opacity != 1 ? allAppsGrid.top : NULL
         width: scrollView.width - 10 * PlasmaCore.Units.devicePixelRatio
         visible: opacity > 0
         Repeater {
@@ -327,6 +340,12 @@ ScrollView {
             NumberAnimation { properties: 'x'; from: (isRight ? -20 * PlasmaCore.Units.devicePixelRatio : 0); duration: 40; }
           }
         ]
+        onStateChanged: {
+          if (state == 'hidden') {
+            scrollpositon = scrollView.ScrollBar.vertical.position
+            scrollheight = scrollView.contentHeight
+          }
+        }
       }
 
       Grid { //Categories
@@ -365,6 +384,12 @@ ScrollView {
             NumberAnimation { properties: 'x'; from: (isRight ? -20 * PlasmaCore.Units.devicePixelRatio : 0);duration: 40; }
           }
         ]
+        onStateChanged: {
+          if (state == 'hidden') {
+            scrollpositon = scrollView.ScrollBar.vertical.position
+            scrollheight = scrollView.contentHeight
+          }
+        }
       }
 
     Item { //Spacer
