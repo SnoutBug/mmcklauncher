@@ -1,0 +1,135 @@
+# Translation of MMcK Launcher in LANGUAGE
+# Copyright (C) 2022
+# This file is distributed under the same license as the MMcK Launcher package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: mmcklauncher\n"
+"Report-Msgid-Bugs-To: https://github.com/snoutbug/mmcklauncher\n"
+"POT-Creation-Date: 2022-03-07 20:42-0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Settings"
+msgstr ""
+
+msgid "Power Off"
+msgstr ""
+
+msgid "Favorite Apps"
+msgstr ""
+
+msgid "General"
+msgstr ""
+
+msgid "Default Page:"
+msgstr ""
+
+msgid "All"
+msgstr ""
+
+msgid "Developement"
+msgstr ""
+
+msgid "Games"
+msgstr ""
+
+msgid "Graphics"
+msgstr ""
+
+msgid "Internet"
+msgstr ""
+
+msgid "Multimedia"
+msgstr ""
+
+msgid "Office"
+msgstr ""
+
+msgid "Science & Math"
+msgstr ""
+
+msgid "System"
+msgstr ""
+
+msgid "Utilities"
+msgstr ""
+
+msgid "Lost & Found"
+msgstr ""
+
+msgid "Icon:"
+msgstr ""
+
+msgid "Indicator:"
+msgstr ""
+
+msgid "Enabled"
+msgstr ""
+
+msgid "Indicator Color:"
+msgstr ""
+
+msgid "Please choose a color"
+msgstr ""
+
+msgid "Greeting:"
+msgstr ""
+
+msgid "Custom Greeting Text:"
+msgstr ""
+
+msgid "No custom greeting set"
+msgstr ""
+
+msgid "Launcher Positioning:"
+msgstr ""
+
+msgid "Default"
+msgstr ""
+
+msgid "Horizontal Center"
+msgstr ""
+
+msgid "Screen Center"
+msgstr ""
+
+msgid "Floating"
+msgstr ""
+
+msgid "Offset Screen Edge (0 is Default):"
+msgstr ""
+
+msgid "Offset Panel (0 is Default):"
+msgstr ""
+
+msgid "All Applications (Default)"
+msgstr ""
+
+msgid "Search:"
+msgstr ""
+
+msgid "Expand search to bookmarks, files and emails"
+msgstr ""
+
+msgid "Theming:"
+msgstr ""
+
+msgid "Dark (Default)"
+msgstr ""
+
+msgid "Light"
+msgstr ""
+
+msgid "Matching"
+msgstr ""
+
+msgid "Search your computer"
+msgstr ""

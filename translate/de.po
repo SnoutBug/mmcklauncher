@@ -1,0 +1,135 @@
+# Translation of MMcK Launcher in German
+# Copyright (C) 2022
+# This file is distributed under the same license as the MMcK Launcher package.
+# Friedrich Schriewer <friedrich.schriewer@gmx.net>, 2022.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: mmcklauncher\n"
+"Report-Msgid-Bugs-To: https://github.com/snoutbug/mmcklauncher\n"
+"POT-Creation-Date: 2022-03-07 20:42-0000\n"
+"PO-Revision-Date: 2022-03-07 20:42+0000\n"
+"Last-Translator: Friedrich Schriewer <friedrich.schriewer@gmx.net>\n"
+"Language-Team: n/a\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Settings"
+msgstr "Einstellungen"
+
+msgid "Power Off"
+msgstr "Herunterfahren"
+
+msgid "Favorite Apps"
+msgstr "Favoriten"
+
+msgid "General"
+msgstr "Allgemein"
+
+msgid "Default Page:"
+msgstr "Startseite:"
+
+msgid "All"
+msgstr "Alle"
+
+msgid "Developement"
+msgstr "Entwicklung"
+
+msgid "Games"
+msgstr "Spiele"
+
+msgid "Graphics"
+msgstr "Grafik"
+
+msgid "Internet"
+msgstr "Internet"
+
+msgid "Multimedia"
+msgstr "Multimedia"
+
+msgid "Office"
+msgstr "Büro"
+
+msgid "Science & Math"
+msgstr "Wissenschaft & Mathematik"
+
+msgid "System"
+msgstr "System"
+
+msgid "Utilities"
+msgstr "Werkzeuge"
+
+msgid "Lost & Found"
+msgstr "Fundsachen"
+
+msgid "Icon:"
+msgstr "Ikone:"
+
+msgid "Indicator:"
+msgstr "Statusanzeige:"
+
+msgid "Enabled"
+msgstr "Eingeschaltet"
+
+msgid "Indicator Color:"
+msgstr "Farbe der Statusanzeige:"
+
+msgid "Please choose a color"
+msgstr "Bitte wählen Sie eine Farbe"
+
+msgid "Greeting:"
+msgstr "Begrüßung:"
+
+msgid "Custom Greeting Text:"
+msgstr "Benutzerdefinierte Begrüßung:"
+
+msgid "No custom greeting set"
+msgstr "Keine Begrüßung gesetzt"
+
+msgid "Launcher Positioning:"
+msgstr "Startmenü Position:"
+
+msgid "Default"
+msgstr "Standard"
+
+msgid "Horizontal Center"
+msgstr "Horizontal zentriert"
+
+msgid "Screen Center"
+msgstr "Bildschirmmitte"
+
+msgid "Floating"
+msgstr "Schwebend"
+
+msgid "Offset Screen Edge (0 is Default):"
+msgstr "Versatz Bildschirmkante (0 ist Standard):"
+
+msgid "Offset Panel (0 is Default):"
+msgstr "Versatz Leiste (0 ist Standard):"
+
+msgid "All Applications (Default)"
+msgstr "Alle Anwendungen (Standard)"
+
+msgid "Search:"
+msgstr "Suche:"
+
+msgid "Expand search to bookmarks, files and emails"
+msgstr "Erweiterte Suche für Lesezeichen, Dateien und E-Mails"
+
+msgid "Theming:"
+msgstr "Thematisierung:"
+
+msgid "Dark (Default)"
+msgstr "Dunkel (Standard)"
+
+msgid "Light"
+msgstr "Hell"
+
+msgid "Matching"
+msgstr "Automatisch anpassend"
+
+msgid "Search your computer"
+msgstr "Computer durchsuchen"
