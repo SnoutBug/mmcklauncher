@@ -1,0 +1,136 @@
+# Translation of MMcK Launcher in LANGUAGE
+# Copyright (C) 2022
+# This file is distributed under the same license as the MMcK Launcher package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: mmcklauncher\n"
+"Report-Msgid-Bugs-To: https://github.com/snoutbug/mmcklauncher\n"
+"POT-Creation-Date: 2022-03-07 20:42-0000\n"
+"PO-Revision-Date: 2022-03-08 13:20+0100\n"
+"Last-Translator: Heimen Stoffels <vistausss@fastmail.com>\n"
+"Language-Team: \n"
+"Language: nl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.0.1\n"
+
+msgid "Settings"
+msgstr "Instellingen"
+
+msgid "Power Off"
+msgstr "Uitschakelen"
+
+msgid "Favorite Apps"
+msgstr "Favorieten"
+
+msgid "General"
+msgstr "Algemeen"
+
+msgid "Default Page:"
+msgstr "Startpagina:"
+
+msgid "All"
+msgstr "Alles"
+
+msgid "Developement"
+msgstr "Ontwikkeling"
+
+msgid "Games"
+msgstr "Games"
+
+msgid "Graphics"
+msgstr "Grafisch"
+
+msgid "Internet"
+msgstr "Internet"
+
+msgid "Multimedia"
+msgstr "Multimedia"
+
+msgid "Office"
+msgstr "Kantoor"
+
+msgid "Science & Math"
+msgstr "Wetenschap"
+
+msgid "System"
+msgstr "Systeem"
+
+msgid "Utilities"
+msgstr "Hulpmiddelen"
+
+msgid "Lost & Found"
+msgstr "Overig"
+
+msgid "Icon:"
+msgstr "Pictogram:"
+
+msgid "Indicator:"
+msgstr "Indicator:"
+
+msgid "Enabled"
+msgstr "Ingeschakeld"
+
+msgid "Indicator Color:"
+msgstr "Indicatorkleur:"
+
+msgid "Please choose a color"
+msgstr "Kies een kleur"
+
+msgid "Greeting:"
+msgstr "Begroeting:"
+
+msgid "Custom Greeting Text:"
+msgstr "Eigen tekst:"
+
+msgid "No custom greeting set"
+msgstr "Geen eigen tekst ingesteld"
+
+msgid "Launcher Positioning:"
+msgstr "Startmenu openen op locatie:"
+
+msgid "Default"
+msgstr "Standaard"
+
+msgid "Horizontal Center"
+msgstr "Midden (horizontaal)"
+
+msgid "Screen Center"
+msgstr "Midden van scherm"
+
+msgid "Floating"
+msgstr "Zweven"
+
+msgid "Offset Screen Edge (0 is Default):"
+msgstr "Ruimte vanaf schermrand (standaard: 0)"
+
+msgid "Offset Panel (0 is Default):"
+msgstr "Ruimte vanaf paneel (standaard: 0)"
+
+msgid "All Applications (Default)"
+msgstr "Alle programma's (standaard)"
+
+msgid "Search:"
+msgstr "Zoeken:"
+
+msgid "Expand search to bookmarks, files and emails"
+msgstr "Ook bladwijzers, bestanden en e-mails doorzoeken"
+
+msgid "Theming:"
+msgstr "Thema:"
+
+msgid "Dark (Default)"
+msgstr "Donker (standaard)"
+
+msgid "Light"
+msgstr "Licht"
+
+msgid "Matching"
+msgstr "Systeemthema"
+
+msgid "Search your computer"
+msgstr "Doorzoek je computer"
