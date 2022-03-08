@@ -43,6 +43,7 @@ PlasmaCore.Dialog {
             var pos = popupPosition(width, height);
             x = pos.x;
             y = pos.y;
+            requestActivate();
         }
     }
 
