@@ -61,11 +61,11 @@ Item {
           root.toggle();
       }
   }
-  function trigger(){
+  function trigger() {
     triggerModel.trigger(index, "", null);
     root.toggle()
   }
-  function updateHighlight(){
+  function updateHighlight() {
     if (navGrid.currentIndex == index){
       highlighted = true
     } else {
@@ -74,7 +74,6 @@ Item {
   }
   function deselect(){
     highlighted = false
-    if (isMouseHighlight)
     listView.currentIndex = -1
   }
   Rectangle {
@@ -115,6 +114,11 @@ Item {
       PropertyChanges { target: rect; color: backdrop.color}
     }]
     transitions: highlight
+    onStateChanged: {
+      if (state == 'default'){
+        isMouseHighlight = false
+      }
+    }
   }
   MouseArea {
       id: ma
@@ -140,12 +144,7 @@ Item {
       }
       onExited: {
         rect.state = "default"
-        if (canNavigate) {
-          runnerList.currentSubIndex = 0
-          runnerList.currentMainIndex = -1
-          listView.currentIndex = -1
-          listView.focus = false
-        }
+        isMouseHighlight = false
       }
       onPositionChanged: {
         isDraging = pressed
@@ -158,6 +157,7 @@ Item {
           }
         }
         if (containsMouse) {
+          isMouseHighlight = true
           rect.state = "highlight"
           if (canNavigate) {
             if (runnerList.currentSubIndex != subIndex) {

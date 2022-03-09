@@ -142,6 +142,9 @@ PlasmaExtras.ScrollArea {
             if (!currentItem) {
               return;
             }
+            if (currentItem.isMouseHighlight) {
+              return
+            }
             if (index == 0 && currentIndex === 0) {
               runnerList.flickableItem.contentY = 0;
               return;
