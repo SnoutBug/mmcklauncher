@@ -288,13 +288,13 @@ ScrollView {
         transitions: [
           Transition {
             to: "hidden"
-            NumberAnimation { properties: 'opacity'; duration: 40;}
-            NumberAnimation { properties: 'x'; from: -10 * PlasmaCore.Units.devicePixelRatio; duration: 40;}
+            PropertyAnimation { properties: 'opacity'; duration: 80; easing: Easing.InQuart}
+            PropertyAnimation { properties: 'x'; from: -10 * PlasmaCore.Units.devicePixelRatio; duration: 80;easing: Easing.InQuart}
           },
           Transition {
             to: "shown"
-            NumberAnimation { properties: 'opacity'; duration: 40; }
-            NumberAnimation { properties: 'x'; from: (isRight ? -20 * PlasmaCore.Units.devicePixelRatio : 0); duration: 40; }
+            PropertyAnimation { properties: 'opacity'; duration: 80; easing: Easing.InQuart}
+            PropertyAnimation { properties: 'x'; from: (isRight ? -20 * PlasmaCore.Units.devicePixelRatio : 0); duration: 80; easing: Easing.InQuart}
           }
         ]
         onStateChanged: {
@@ -331,13 +331,13 @@ ScrollView {
         transitions: [
           Transition {
             to: "hidden"
-            NumberAnimation { properties: 'opacity'; duration: 40;}
-            NumberAnimation { properties: 'x'; from: -10 * PlasmaCore.Units.devicePixelRatio; duration: 40;}
+            PropertyAnimation { properties: 'opacity'; duration: 80; easing: Easing.InQuart}
+            PropertyAnimation { properties: 'x'; from: -10 * PlasmaCore.Units.devicePixelRatio; duration: 80; easing: Easing.InQuart}
           },
           Transition {
             to: "shown"
-            NumberAnimation { properties: 'opacity'; duration: 40; }
-            NumberAnimation { properties: 'x'; from: (isRight ? -20 * PlasmaCore.Units.devicePixelRatio : 0); duration: 40; }
+            PropertyAnimation { properties: 'opacity'; duration: 80; easing: Easing.InQuart}
+            PropertyAnimation { properties: 'x'; from: (isRight ? -20 * PlasmaCore.Units.devicePixelRatio : 0); duration: 80; easing: Easing.InQuart}
           }
         ]
         onStateChanged: {
@@ -375,13 +375,13 @@ ScrollView {
         transitions: [
           Transition {
             to: "hidden"
-            NumberAnimation { properties: 'opacity'; duration: 40; }
-            NumberAnimation { properties: 'x'; from: -10 * PlasmaCore.Units.devicePixelRatio; duration: 40; }
+            PropertyAnimation { properties: 'opacity'; duration: 80; easing: Easing.InQuart}
+            PropertyAnimation { properties: 'x'; from: -10 * PlasmaCore.Units.devicePixelRatio; duration: 80; easing: Easing.InQuart}
           },
           Transition {
             to: "shown"
-            NumberAnimation { properties: 'opacity'; duration: 40; }
-            NumberAnimation { properties: 'x'; from: (isRight ? -20 * PlasmaCore.Units.devicePixelRatio : 0);duration: 40; }
+            PropertyAnimation { properties: 'opacity'; duration: 80; easing: Easing.InQuart}
+            PropertyAnimation { properties: 'x'; from: (isRight ? -20 * PlasmaCore.Units.devicePixelRatio : 0);duration: 80; easing: Easing.InQuart}
           }
         ]
         onStateChanged: {

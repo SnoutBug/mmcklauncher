@@ -239,13 +239,13 @@ Item {
     transitions: [
       Transition {
         to: "visible"
-        NumberAnimation {properties: 'opacity'; duration: 40;}
-        NumberAnimation {properties: 'x'; from: 5 * PlasmaCore.Units.devicePixelRatio; duration: 40;}
+        PropertyAnimation {properties: 'opacity'; duration: 100; easing.type: Easing.OutQuart}
+        PropertyAnimation {properties: 'x'; from: 5 * PlasmaCore.Units.devicePixelRatio; duration: 100; easing.type: Easing.OutQuart}
       },
       Transition {
         to: "hidden"
-        NumberAnimation {properties: 'opacity'; duration: 40;}
-        NumberAnimation {properties: 'x'; from: 25 * PlasmaCore.Units.devicePixelRatio; duration: 40;}
+        PropertyAnimation {properties: 'opacity'; duration: 100; easing.type: Easing.OutQuart}
+        PropertyAnimation {properties: 'x'; from: 25 * PlasmaCore.Units.devicePixelRatio; duration: 100; easing.type: Easing.OutQuart}
       }
     ]
   }
@@ -272,13 +272,13 @@ Item {
     transitions: [
       Transition {
         to: "visible"
-        NumberAnimation {properties: 'opacity'; duration: 40;}
-        NumberAnimation {properties: 'x'; from: 40 * PlasmaCore.Units.devicePixelRatio; duration: 40;}
+        PropertyAnimation {properties: 'opacity'; duration: 100; easing.type: Easing.OutQuart}
+        PropertyAnimation {properties: 'x'; from: 80 * PlasmaCore.Units.devicePixelRatio; duration: 100; easing.type: Easing.OutQuart}
       },
       Transition {
         to: "hidden"
-        NumberAnimation {properties: 'opacity'; duration: 40;}
-        NumberAnimation {properties: 'x'; from: 40 * PlasmaCore.Units.devicePixelRatio; duration: 40;}
+        PropertyAnimation {properties: 'opacity'; duration: 100; easing.type: Easing.OutQuart}
+        PropertyAnimation {properties: 'x'; from: 20 * PlasmaCore.Units.devicePixelRatio; duration: 100; easing.type: Easing.OutQuart}
       }
     ]
   }
