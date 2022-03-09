@@ -95,7 +95,7 @@ Item {
     y: - root.margins.top
     FloatingAvatar { //Anyone looking for an unpredictable number generator?
       id: floatingAvatar
-      visualParent: root
+      //visualParent: root
       isTop: main.isTop
       avatarWidth: 125 * PlasmaCore.Units.devicePixelRatio
       visible: root.visible && !isTop ? true : root.visible && plasmoid.configuration.floating ? true : false

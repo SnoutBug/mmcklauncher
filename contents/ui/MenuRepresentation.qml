@@ -96,7 +96,7 @@ PlasmaCore.Dialog {
         } else {
           x = (appletTopLeft.x < horizMidPoint) ? screen.x : (screen.x + screen.width) - width;
           if (plasmoid.configuration.floating) {
-          if (appletTopLeft.x < horizMidPoint) {
+            if (appletTopLeft.x < horizMidPoint) {
               x += offset
             } else if (appletTopLeft.x + width > horizMidPoint){
               x -= offset
