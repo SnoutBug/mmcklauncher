@@ -43,6 +43,7 @@ Kirigami.FormLayout {
     property bool cfg_useCustomButtonImage: plasmoid.configuration.useCustomButtonImage
     property string cfg_customButtonImage: plasmoid.configuration.customButtonImage
     property bool cfg_activationIndicator: plasmoid.configuration.activationIndicator
+    property bool cfg_fullHeight: plasmoid.configuration.fullHeight
     property color cfg_indicatorColor: plasmoid.configuration.indicatorColor
     property bool cfg_enableGreeting: plasmoid.configuration.indicatorColor
     property alias cfg_defaultPage: defaultPage.currentIndex
@@ -213,6 +214,13 @@ Kirigami.FormLayout {
         i18n("Screen Center"),
         ]
         onCurrentIndexChanged: {
+          if (currentIndex == 0) {
+            fullHeight.visible = true
+            floating.enabled = false
+          } else {
+              fullHeight.visible = false
+          }
+
           if (currentIndex == 2) {
             floating.enabled = false
             floating.checked = true
@@ -220,6 +228,15 @@ Kirigami.FormLayout {
             floating.enabled = true
           }
         }
+    }
+    CheckBox {
+      id: fullHeight
+      text: i18n("Full height")
+      onCheckedChanged: {
+        plasmoid.configuration.fullHeight = checked
+        cfg_fullHeight = checked
+        floating.visible = !checked
+      }
     }
     CheckBox {
       id: floating

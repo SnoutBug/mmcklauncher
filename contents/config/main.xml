@@ -22,6 +22,10 @@
       <label>Shows an indicator underneath the launcher's icon when the launcher is opened.</label>
       <default>true</default>
     </entry>
+    <entry name="fullHeight" type="Bool">
+      <label>Fill the full screen height with the launcher.</label>
+      <default>false</default>
+    </entry>
     <entry name="indicatorColor" type="Color">
       <label>Color of the indicator.</label>
       <default>#2164C9</default>

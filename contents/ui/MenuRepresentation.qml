@@ -22,6 +22,7 @@
 
 import QtQuick 2.12
 import QtQuick.Layouts 1.12
+import QtQuick.Window 2.2
 import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.plasma.components 3.0 as PlasmaComponents
 
@@ -132,7 +133,7 @@ PlasmaCore.Dialog {
         id: fs
         focus: true
         Layout.minimumWidth: 515 * PlasmaCore.Units.devicePixelRatio
-        Layout.minimumHeight: 600 * PlasmaCore.Units.devicePixelRatio
+        Layout.minimumHeight: (plasmoid.configuration.fullHeight ? Screen.desktopAvailableHeight : 600) * PlasmaCore.Units.devicePixelRatio
         Layout.maximumWidth: Layout.minimumWidth
         Layout.maximumHeight: Layout.minimumHeight
 
