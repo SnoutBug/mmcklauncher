@@ -1,0 +1,135 @@
+# Translation of MMcK Launcher in id
+# Copyright (C) 2022
+# This file is distributed under the same license as the MMcK Launcher package.
+# Adam Adrian <4.adam.adrian@gmail.com>, 2022.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: mmcklauncher\n"
+"Report-Msgid-Bugs-To: https://github.com/snoutbug/mmcklauncher\n"
+"POT-Creation-Date: 2022-03-07 20:42-0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: Adam Adrian <4.adam.adrian@gmail.com>\n"
+"Language-Team: Indonesia <>\n"
+"Language: id\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Settings"
+msgstr "Pengaturan"
+
+msgid "Power Off"
+msgstr "Matikan Daya"
+
+msgid "Favorite Apps"
+msgstr "Aplikasi Favorit"
+
+msgid "General"
+msgstr "Umum"
+
+msgid "Default Page:"
+msgstr "Halaman Bawaan"
+
+msgid "All"
+msgstr "Semua"
+
+msgid "Developement"
+msgstr "Pengembangan"
+
+msgid "Games"
+msgstr "Permainan"
+
+msgid "Graphics"
+msgstr "Grafis"
+
+msgid "Internet"
+msgstr "Intenet"
+
+msgid "Multimedia"
+msgstr "Multimedia"
+
+msgid "Office"
+msgstr "Kantor"
+
+msgid "Science & Math"
+msgstr "Sains & Matematika"
+
+msgid "System"
+msgstr "Sistem"
+
+msgid "Utilities"
+msgstr "Alat"
+
+msgid "Lost & Found"
+msgstr "Hilang & Ditemukan"
+
+msgid "Icon:"
+msgstr "Ikon:"
+
+msgid "Indicator:"
+msgstr "Indkator:"
+
+msgid "Enabled"
+msgstr "Diaktifkan"
+
+msgid "Indicator Color:"
+msgstr "Warna Indikator"
+
+msgid "Please choose a color"
+msgstr "Silahkan pilih sebuah warna"
+
+msgid "Greeting:"
+msgstr "Sapaan:"
+
+msgid "Custom Greeting Text:"
+msgstr "Teks Sapaan Kustom:"
+
+msgid "No custom greeting set"
+msgstr "Tidak ada spaan kustom yang diatur"
+
+msgid "Launcher Positioning:"
+msgstr "Pemosisian Peluncur:"
+
+msgid "Default"
+msgstr "Default"
+
+msgid "Horizontal Center"
+msgstr "Tengah Horizontal"
+
+msgid "Screen Center"
+msgstr "Di Tengah Layar"
+
+msgid "Floating"
+msgstr "Mengambang"
+
+msgid "Offset Screen Edge (0 is Default):"
+msgstr "Offset Tepian Layar (0 = Default)"
+
+msgid "Offset Panel (0 is Default):"
+msgstr "Offset Panel (0 = Default)"
+
+msgid "All Applications (Default)"
+msgstr "Semua Aplikasi (Default)"
+
+msgid "Search:"
+msgstr "Cari:"
+
+msgid "Expand search to bookmarks, files and emails"
+msgstr "Luaskan pencaarian ke bookmark, file dan email"
+
+msgid "Theming:"
+msgstr "Tema:"
+
+msgid "Dark (Default)"
+msgstr "Gelap (Default)"
+
+msgid "Light"
+msgstr "Terang"
+
+msgid "Matching"
+msgstr "Cocokkan Tema"
+
+msgid "Search your computer"
+msgstr "Cari di komputermu"
