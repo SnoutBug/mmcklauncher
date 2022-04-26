@@ -104,6 +104,7 @@ Item {
   //Power & Settings
   Item {
     Header {
+      id: powerSettings
       x: main.width - width - iconSize / 2
       y: isTop ? main.height - 2 * height - iconSize / 2 : iconSize / 2
       iconSize: 20 * PlasmaCore.Units.devicePixelRatio
@@ -115,7 +116,7 @@ Item {
     PlasmaComponents.Label {
       id: nameLabel
       x: main.width / 2 - width / 2 //This centeres the Text
-      y: isTop ? main.height - height - 125 * PlasmaCore.Units.devicePixelRatio : 80 * PlasmaCore.Units.devicePixelRatio
+      y: isTop ? main.height - height - 135 * PlasmaCore.Units.devicePixelRatio : 80 * PlasmaCore.Units.devicePixelRatio
       text: plasmoid.configuration.enableGreeting && plasmoid.configuration.customGreeting ? plasmoid.configuration.customGreeting : plasmoid.configuration.enableGreeting ? 'Hi, ' + kuser.fullName : i18n("%1@%2", kuser.loginName, kuser.host)
       color: textColor
       font.family: textFont
@@ -126,7 +127,7 @@ Item {
   Item {
     Rectangle {
       x: 25 * PlasmaCore.Units.devicePixelRatio
-      y: isTop ? main.height - height - 55 : 125 * PlasmaCore.Units.devicePixelRatio
+      y: isTop ? main.height - height - (2 * powerSettings.height + powerSettings.iconSize / 2) - 10 * PlasmaCore.Units.devicePixelRatio : 125 * PlasmaCore.Units.devicePixelRatio
       width: main.width - 2 * x
       height: 45 * PlasmaCore.Units.devicePixelRatio
       radius: 6
