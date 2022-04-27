@@ -114,12 +114,12 @@ PlasmaCore.Dialog {
                 offset = (125 * PlasmaCore.Units.devicePixelRatio) / 2 + parent.height * 0.125
               }
             }
-            y = parent.height + panelSvg.margins.bottom + offset;
+            y = screen.y + parent.height + panelSvg.margins.bottom + offset;
           } else {
             if (plasmoid.configuration.offsetY > 0) {
               offset = plasmoid.configuration.offsetY
             }
-            y = screen.height - parent.height - height - panelSvg.margins.top - offset;
+            y = screen.y + screen.height - parent.height - height - panelSvg.margins.top - offset;
           }
         } else {
           y = vertMidPoint - height / 2
