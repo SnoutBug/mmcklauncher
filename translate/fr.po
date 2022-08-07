@@ -1,0 +1,135 @@
+# Translation of MMcK Launcher in French
+# Copyright (C) 2022
+# This file is distributed under the same license as the MMcK Launcher package.
+# Augustin Laurent <augustin.lrt2@icloud.com>, 2022.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: mmcklauncher\n"
+"Report-Msgid-Bugs-To: https://github.com/snoutbug/mmcklauncher\n"
+"POT-Creation-Date: 2022-08-07 10:00-0000\n"
+"PO-Revision-Date: 2022-08-07 HO:MI+ZONE\n"
+"Last-Translator: ugustin Laurent <augustin.lrt2@icloud.com>\n"
+"Language-Team: French <>\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Settings"
+msgstr "Réglages"
+
+msgid "Power Off"
+msgstr "Éteindre"
+
+msgid "Favorite Apps"
+msgstr "Applications préférées"
+
+msgid "General"
+msgstr "Général"
+
+msgid "Default Page:"
+msgstr "Page par défaut:"
+
+msgid "All"
+msgstr "Tout"
+
+msgid "Developement"
+msgstr "Développement"
+
+msgid "Games"
+msgstr "Jeux"
+
+msgid "Graphics"
+msgstr "Graphisme"
+
+msgid "Internet"
+msgstr "Internet"
+
+msgid "Multimedia"
+msgstr "Multimédia"
+
+msgid "Office"
+msgstr "Office"
+
+msgid "Science & Math"
+msgstr "Sciences & Math"
+
+msgid "System"
+msgstr "Système"
+
+msgid "Utilities"
+msgstr "Utilitaires"
+
+msgid "Lost & Found"
+msgstr "Lost & Found"
+
+msgid "Icon:"
+msgstr "Icône:"
+
+msgid "Indicator:"
+msgstr "Indicateur:"
+
+msgid "Enabled"
+msgstr "Activé"
+
+msgid "Indicator Color:"
+msgstr "Couleur de l'indicateur:"
+
+msgid "Please choose a color"
+msgstr "Veuillez choisir une couleur"
+
+msgid "Greeting:"
+msgstr "Message d'acceuil:"
+
+msgid "Custom Greeting Text:"
+msgstr "Texte d'acceuil personnalisé :"
+
+msgid "No custom greeting set"
+msgstr "Aucun message d'accueil personnalisé défini"
+
+msgid "Launcher Positioning:"
+msgstr "Positionnement du lanceur:"
+
+msgid "Default"
+msgstr "Défaut"
+
+msgid "Horizontal Center"
+msgstr "Centre horizontal"
+
+msgid "Screen Center"
+msgstr "Centre de l'écran"
+
+msgid "Floating"
+msgstr "Flottant"
+
+msgid "Offset Screen Edge (0 is Default):"
+msgstr "Décalage par rapport au bord de l'écran (0 est la valeur par défaut):"
+
+msgid "Offset Panel (0 is Default):"
+msgstr "Décalage par rapport à la barre de tâche (0 est la valeur par défaut):"
+
+msgid "All Applications (Default)"
+msgstr "Toutes les applications (par défaut)"
+
+msgid "Search:"
+msgstr "Rechercher:"
+
+msgid "Expand search to bookmarks, files and emails"
+msgstr "Étendre la recherche aux signets, fichiers et e-mails"
+
+msgid "Theming:"
+msgstr "Thème:"
+
+msgid "Dark (Default)"
+msgstr "Dark (Default)"
+
+msgid "Light"
+msgstr "Light"
+
+msgid "Matching"
+msgstr "Correspondant"
+
+msgid "Search your computer"
+msgstr "Rechercher dans votre ordinateur"
