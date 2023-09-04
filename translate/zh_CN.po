@@ -1,0 +1,222 @@
+# Translation of mmckLauncher in zh_CN
+# Copyright (C) 2023
+# This file is distributed under the same license as the mmckLauncher package.
+#
+# HappyRespawnanchor <happyrespawnanchor@gmail.com>, 2023.
+msgid ""
+msgstr ""
+"Project-Id-Version: mmckLauncher\n"
+"Report-Msgid-Bugs-To: https://github.com/SnoutBug/plasmoid-mmckLauncher\n"
+"POT-Creation-Date: 2023-07-30 13:12+0800\n"
+"PO-Revision-Date: 2023-07-30 14:20+0800\n"
+"Last-Translator: HappyRespawnanchor <happyrespawnanchor@gmail.com>\n"
+"Language-Team: Chinese <kde-i18n-doc@kde.org>\n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Lokalize 23.04.3\n"
+
+#: ../metadata.desktop
+msgid "MMcK Launcher"
+msgstr "MMcK Launcher"
+
+#: ../metadata.desktop
+msgid "A modern Launcher!"
+msgstr "一个现代化的应用程序启动器！"
+
+#: ../contents/code/tools.js
+msgid "Remove from Favorites"
+msgstr "从常用程序中移除"
+
+#: ../contents/code/tools.js
+msgid "Add to Favorites"
+msgstr "添加到常用程序"
+
+#: ../contents/code/tools.js
+msgid "On All Activities"
+msgstr "所有活动"
+
+#: ../contents/code/tools.js
+msgid "On the Current Activity"
+msgstr "当前活动"
+
+#: ../contents/code/tools.js
+msgid "Show in Favorites"
+msgstr "在常用程序中显示"
+
+#: ../contents/config/config.qml
+msgid "General"
+msgstr "常规"
+
+#: ../contents/ui/AppList.qml
+msgid "Favorite Apps"
+msgstr "常用程序"
+
+#: ../contents/ui/AppList.qml
+msgid "All"
+msgstr "全部应用程序"
+
+#: ../contents/ui/AppList.qml ../contents/ui/ConfigGeneral.qml
+msgid "Developement"
+msgstr "开发"
+
+#: ../contents/ui/AppList.qml ../contents/ui/ConfigGeneral.qml
+msgid "Games"
+msgstr "游戏"
+
+#: ../contents/ui/AppList.qml ../contents/ui/ConfigGeneral.qml
+msgid "Graphics"
+msgstr "图像处理"
+
+#: ../contents/ui/AppList.qml ../contents/ui/ConfigGeneral.qml
+msgid "Internet"
+msgstr "互联网"
+
+#: ../contents/ui/AppList.qml ../contents/ui/ConfigGeneral.qml
+msgid "Multimedia"
+msgstr "影音"
+
+#: ../contents/ui/AppList.qml ../contents/ui/ConfigGeneral.qml
+msgid "Office"
+msgstr "办公"
+
+#: ../contents/ui/AppList.qml ../contents/ui/ConfigGeneral.qml
+msgid "Science & Math"
+msgstr "科学和数学"
+
+#: ../contents/ui/AppList.qml ../contents/ui/ConfigGeneral.qml
+#: ../contents/ui/Header.qml
+msgid "Settings"
+msgstr "设置"
+
+#: ../contents/ui/AppList.qml ../contents/ui/ConfigGeneral.qml
+msgid "System"
+msgstr "系统"
+
+#: ../contents/ui/AppList.qml ../contents/ui/ConfigGeneral.qml
+msgid "Utilities"
+msgstr "工具"
+
+#: ../contents/ui/AppList.qml ../contents/ui/ConfigGeneral.qml
+msgid "Lost & Found"
+msgstr "未知类别"
+
+#: ../contents/ui/ConfigGeneral.qml
+msgid "Icon:"
+msgstr "图标："
+
+#: ../contents/ui/ConfigGeneral.qml
+msgctxt "@item:inmenu Open icon chooser dialog"
+msgid "Choose..."
+msgstr "选择..."
+
+#: ../contents/ui/ConfigGeneral.qml
+msgctxt "@item:inmenu Reset icon to default"
+msgid "Clear Icon"
+msgstr "清除图标"
+
+#: ../contents/ui/ConfigGeneral.qml
+msgid "Indicator:"
+msgstr "指示条："
+
+#: ../contents/ui/ConfigGeneral.qml
+msgid "Enabled"
+msgstr "启用"
+
+#: ../contents/ui/ConfigGeneral.qml
+msgid "Indicator Color:"
+msgstr "指示条颜色："
+
+#: ../contents/ui/ConfigGeneral.qml
+msgid "Please choose a color"
+msgstr "选择颜色"
+
+#: ../contents/ui/ConfigGeneral.qml
+msgid "Greeting:"
+msgstr "欢迎文本："
+
+#: ../contents/ui/ConfigGeneral.qml
+msgid "Custom Greeting Text:"
+msgstr "自定义欢迎文本："
+
+#: ../contents/ui/ConfigGeneral.qml
+msgid "No custom greeting set"
+msgstr "默认文本"
+
+#: ../contents/ui/ConfigGeneral.qml
+msgid "Launcher Positioning:"
+msgstr "位置："
+
+#: ../contents/ui/ConfigGeneral.qml
+msgid "Default"
+msgstr "默认"
+
+#: ../contents/ui/ConfigGeneral.qml
+msgid "Horizontal Center"
+msgstr "水平居中"
+
+#: ../contents/ui/ConfigGeneral.qml
+msgid "Screen Center"
+msgstr "屏幕居中"
+
+#: ../contents/ui/ConfigGeneral.qml
+msgid "Floating"
+msgstr "面板分离"
+
+#: ../contents/ui/ConfigGeneral.qml
+msgid "Offset Screen Edge (0 is Default):"
+msgstr "屏幕边缘分离（默认0）："
+
+#: ../contents/ui/ConfigGeneral.qml
+msgid "Offset Panel (0 is Default):"
+msgstr "面板分离（默认0）："
+
+#: ../contents/ui/ConfigGeneral.qml
+msgid "Default Page:"
+msgstr "默认页类别："
+
+#: ../contents/ui/ConfigGeneral.qml
+msgid "All Applications (Default)"
+msgstr "所有应用程序（默认）"
+
+#: ../contents/ui/ConfigGeneral.qml
+msgid "Search:"
+msgstr "搜索："
+
+#: ../contents/ui/ConfigGeneral.qml
+msgid "Expand search to bookmarks, files and emails"
+msgstr "允许搜索书签，文件与电子邮件"
+
+#: ../contents/ui/ConfigGeneral.qml
+msgid "Theming:"
+msgstr "外观："
+
+#: ../contents/ui/ConfigGeneral.qml
+msgid "Dark (Default)"
+msgstr "深色（默认）"
+
+#: ../contents/ui/ConfigGeneral.qml
+msgid "Light"
+msgstr "浅色"
+
+#: ../contents/ui/ConfigGeneral.qml
+msgid "Matching"
+msgstr "跟随系统"
+
+#: ../contents/ui/Header.qml
+msgid "Power Off"
+msgstr "关机"
+
+#: ../contents/ui/main.qml
+msgid "Edit Applications..."
+msgstr "编辑应用程序..."
+
+#: ../contents/ui/MainView.qml
+msgid "%1@%2"
+msgstr "%1@%2"
+
+#: ../contents/ui/MainView.qml
+msgid "Search your computer"
+msgstr "搜索..."
